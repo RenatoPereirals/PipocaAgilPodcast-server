@@ -51,6 +51,10 @@ Siga estas etapas para configurar e executar o servidor em sua máquina local:
 
 A API oferece uma variedade de endpoints para acessar e manipular os dados relacionados a eventos, podcasts, artigos e usuários. Consulte a documentação da API para obter detalhes sobre esses endpoints.
 
+## Testes Automatizados
+
+Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](server/tests/README.md).
+
 ## Contribuindo
 
 Agradecemos pelo seu interesse em contribuir para o Pipoca Ágil Podcast! Sinta-se à vontade para enviar pull requests, relatar problemas ou sugerir melhorias. Estamos ansiosos para ver o que você pode adicionar ao projeto.
