@@ -53,7 +53,7 @@ A API oferece uma variedade de endpoints para acessar e manipular os dados relac
 
 ## Testes Automatizados
 
-Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](server/tests/README.md).
+Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](tests/README.md).
 
 ## Contribuindo
 
