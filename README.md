@@ -1,43 +1,62 @@
-# Documentação dos Testes
+# Pipoca Ágil Podcast - Servidor
 
-Este README contém informações sobre os testes automatizados realizados no projeto.
+Bem-vindo ao repositório do servidor do Pipoca Ágil Podcast! Este é o coração do nosso projeto multimídia, onde você pode ouvir podcasts, ler artigos e participar de eventos relacionados à metodologia ágil. A aplicação também oferece a capacidade de se cadastrar como usuário comum ou como usuário administrador. Se você é um usuário administrador, terá acesso a informações detalhadas sobre os eventos, podcasts e artigos mais populares, bem como informações sobre o conteúdo mais curtido, comentado e compartilhado.
 
-## Descrição Geral dos Testes
+## Tecnologias Principais
 
-Os testes neste diretório cobrem os seguintes tipos de testes:
+- .NET 7
+- ASP.NET Core
+- Entity Framework Core (EF Core)
+- JWT (JSON Web Tokens)
 
-- Testes de Unidade
-- Testes de Integração
-- Testes de Aceitação
+## Começando
 
-## Instruções de Execução
+Siga estas etapas para configurar e executar o servidor em sua máquina local:
 
-Siga as instruções abaixo para executar os testes:
+1. **Clonando o Repositório**:
 
-1. Certifique-se de ter as dependências de teste instaladas.
-2. Configure qualquer ambiente de teste necessário.
-3. Execute os testes:
+   Abra o terminal e execute o seguinte comando para clonar este repositório:
 
+   ```bash
+   git clone https://github.com/seu-usuario/pipoca-agil-podcast-server.git
+   ```
 
-## Cenários de Teste
+2. **Configurando o Ambiente**:
 
-Aqui estão alguns dos cenários de teste incluídos:
+   Certifique-se de que você possui o SDK .NET 7 instalado na sua máquina. Caso contrário, você pode baixá-lo no [site oficial da Microsoft](https://dotnet.microsoft.com/download/dotnet/7.0).
 
-- Descrever o que cada cenário de teste verifica e o que é esperado.
+3. **Variáveis de Ambiente**:
 
-## Requisitos de Configuração
+   Você precisará configurar as variáveis de ambiente para a aplicação funcionar corretamente. Consulte o arquivo `.env.example` para obter informações sobre as variáveis necessárias e crie um arquivo `.env` na raiz do projeto com os valores apropriados.
 
-----------------------------------
+4. **Banco de Dados**:
 
-## Relatórios dos Testes
+   Configure a conexão do banco de dados no arquivo `appsettings.json`. Utilizamos o Entity Framework Core para interagir com o banco de dados. Você pode criar o banco de dados executando as migrações com o seguinte comando:
 
-Os resultados dos testes são gerados em [incluir localização do relatório] e podem ser visualizados em [incluir instruções de visualização].
+   ```bash
+   dotnet ef database update
+   ```
 
-## Cobertura de Teste
+5. **Executando o Servidor**:
 
-A cobertura de teste atual é de X%, cobrindo as seguintes partes do código: [incluir detalhes da cobertura de teste].
+   Agora você pode executar o servidor com o seguinte comando:
 
+   ```bash
+   dotnet run
+   ```
 
+   O servidor estará disponível em `https://localhost:5001` (ou no endereço especificado no arquivo de configuração).
 
+## Endpoints da API
 
+A API oferece uma variedade de endpoints para acessar e manipular os dados relacionados a eventos, podcasts, artigos e usuários. Consulte a documentação da API para obter detalhes sobre esses endpoints.
 
+## Testes Automatizados
+
+Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](server/tests/README.md).
+
+## Contribuindo
+
+Agradecemos pelo seu interesse em contribuir para o Pipoca Ágil Podcast! Sinta-se à vontade para enviar pull requests, relatar problemas ou sugerir melhorias. Estamos ansiosos para ver o que você pode adicionar ao projeto.
+
+---
