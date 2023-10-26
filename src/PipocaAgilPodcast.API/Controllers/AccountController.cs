@@ -22,9 +22,14 @@ public class AccountController : ControllerBase
         }
     };
 
-    [HttpGet(Name = "GetAccount")]
+    [HttpGet]
     public IEnumerable<Account> Get()
     {
         return _account;
+    }
+
+    [HttpGet("{id}")]
+    public IEnumerable<Account> GetById(int id) {
+        return _account.Where(account => account.Id == id);
     }
 }
