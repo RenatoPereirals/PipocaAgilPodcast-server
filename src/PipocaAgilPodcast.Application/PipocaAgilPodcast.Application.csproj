@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj" />
+    <ProjectReference Include="..\PipocaAgilPodcast.Persistence\PipocaAgilPodcast.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PipocaAgilPodcast.API.Models;
+using PipocaAgilPodcast.API.Modles;
 namespace PipocaAgilPodcast.API.Controller;
 
 [ApiController]

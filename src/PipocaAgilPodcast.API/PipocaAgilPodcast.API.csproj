@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    
+    <ProjectReference Include="..\PipocaAgilPodcast.Application\PipocaAgilPodcast.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace PipocaAgilPodcast.API.Models;
+namespace PipocaAgilPodcast.API.Modles;
 
     public class Account
     {
