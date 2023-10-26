@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Application", "PipocaAgilPodcast.Application\PipocaAgilPodcast.Application.csproj", "{3DBDEF19-B922-448B-B452-168C639C3F4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.API", "PipocaAgilPodcast.API\PipocaAgilPodcast.API.csproj", "{C63310A6-58F5-4AFE-9817-5A046049AA58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Domain", "PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj", "{4214F0F0-8CEF-4884-B823-A2D5560B8B94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Persistence", "PipocaAgilPodcast.Persistence\PipocaAgilPodcast.Persistence.csproj", "{D85E4B38-8253-4EA7-81DD-3515368C95AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Authentication", "PipocaAgilPodcast.Authentication\PipocaAgilPodcast.Authentication.csproj", "{72B67F7D-8FBE-43BF-BCC2-05CF6A91F95F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DBDEF19-B922-448B-B452-168C639C3F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DBDEF19-B922-448B-B452-168C639C3F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DBDEF19-B922-448B-B452-168C639C3F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DBDEF19-B922-448B-B452-168C639C3F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63310A6-58F5-4AFE-9817-5A046049AA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63310A6-58F5-4AFE-9817-5A046049AA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63310A6-58F5-4AFE-9817-5A046049AA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63310A6-58F5-4AFE-9817-5A046049AA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4214F0F0-8CEF-4884-B823-A2D5560B8B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4214F0F0-8CEF-4884-B823-A2D5560B8B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4214F0F0-8CEF-4884-B823-A2D5560B8B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4214F0F0-8CEF-4884-B823-A2D5560B8B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85E4B38-8253-4EA7-81DD-3515368C95AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85E4B38-8253-4EA7-81DD-3515368C95AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85E4B38-8253-4EA7-81DD-3515368C95AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85E4B38-8253-4EA7-81DD-3515368C95AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B67F7D-8FBE-43BF-BCC2-05CF6A91F95F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B67F7D-8FBE-43BF-BCC2-05CF6A91F95F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B67F7D-8FBE-43BF-BCC2-05CF6A91F95F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B67F7D-8FBE-43BF-BCC2-05CF6A91F95F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

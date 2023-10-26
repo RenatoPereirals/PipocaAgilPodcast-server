@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PipocaAgilPodcast.API.Models;
-
-namespace PipocaAgilPodcast.API.Controllers;
+namespace PipocaAgilPodcast.API.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
