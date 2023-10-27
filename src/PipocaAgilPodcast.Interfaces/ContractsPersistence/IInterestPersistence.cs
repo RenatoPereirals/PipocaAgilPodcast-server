@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using PipocaAgilPodcast.Domain;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsPersistence
-{
+namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
     public interface IInterestPersistence
     {
         Task<IEnumerable<Interest>> GetInterestsAsync();
         Task<Interest> GetInterestByIdAsync(int id);
         Task<IEnumerable<Interest>> GetInterestsForUserAsync(int userId);
-        ask<IEnumerable<Interest>> SearchInterestsByTopicAsync(string topic);
+        Task<IEnumerable<Interest>> SearchInterestsByTopicAsync(string topic);
     }
-}

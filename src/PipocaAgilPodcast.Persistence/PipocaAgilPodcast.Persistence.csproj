@@ -20,4 +20,9 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj" />
+    <ProjectReference Include="..\PipocaAgilPodcast.Interfaces\PipocaAgilPodcast.Interfaces.csproj" />
+</ItemGroup>
+
 </Project>

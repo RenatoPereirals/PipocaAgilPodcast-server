@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using PipocaAgilPodcast.Domain;
+using PipocaAgilPodcast.Domain.Enum;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsPersistence
-{
+namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
+
     public interface IActivityLogPersistence : IRepositoryPesistence
     {
         Task<ActivityStatistics> GetActivityStatisticsAsync();
@@ -16,4 +14,3 @@ namespace PipocaAgilPodcast.Interfaces.ContractsPersistence
         Task<IEnumerable<ActivityLog>> GetActivityByTypeAsync(ActivityType activityType);
         Task<IEnumerable<ActivityLog>> GetUserActivityHistoryAsync(int userId);
     }
-}

@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using PipocaAgilPodcast.Domain;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsPersistence
-{
+namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
+
     public interface IPermissionPersistence
     {
         Task<IEnumerable<Permission>> GetAllPermissionsAsync();
@@ -13,4 +10,3 @@ namespace PipocaAgilPodcast.Interfaces.ContractsPersistence
         Task<IEnumerable<Permission>> GetRolePermissionsAsync(string roleName);
         Task<IEnumerable<Permission>> GetPermissionsIsActiveAsync(bool isActive = true);
     }
-}
