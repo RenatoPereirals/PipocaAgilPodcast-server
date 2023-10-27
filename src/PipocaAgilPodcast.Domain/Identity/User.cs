@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace PipocaAgilPodcast.Domain.Identity;
 
-    public class User
+    public class User : IdentityUser<int>
     {
         public User()
         {
@@ -14,6 +11,5 @@ namespace PipocaAgilPodcast.Domain.Identity;
         public string FullName { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-
         public List<UserRole> UsersRoles { get; set; }
     }

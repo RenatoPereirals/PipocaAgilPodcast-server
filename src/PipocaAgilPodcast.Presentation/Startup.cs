@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace PipocaAgilPodcast.API
+namespace PipocaAgilPodcast.Presentation
 {
     public class Startup
     {
@@ -20,7 +20,7 @@ namespace PipocaAgilPodcast.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PipocaAgilPodcast.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PipocaAgilPodcast.Presentation", Version = "v1" });
             });
         }
 
@@ -31,7 +31,7 @@ namespace PipocaAgilPodcast.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PipocaAgilPodcast.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PipocaAgilPodcast.Presentation v1"));
             }
 
             app.UseHttpsRedirection();

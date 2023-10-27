@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Application", "PipocaAgilPodcast.Application\PipocaAgilPodcast.Application.csproj", "{3DBDEF19-B922-448B-B452-168C639C3F4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.API", "PipocaAgilPodcast.API\PipocaAgilPodcast.API.csproj", "{C63310A6-58F5-4AFE-9817-5A046049AA58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Presentation", "PipocaAgilPodcast.Presentation\PipocaAgilPodcast.Presentation.csproj", "{C63310A6-58F5-4AFE-9817-5A046049AA58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Domain", "PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj", "{4214F0F0-8CEF-4884-B823-A2D5560B8B94}"
 EndProject
