@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PipocaAgilPodcast.Persistence.Context;
 
 namespace PipocaAgilPodcast.Presentation
 {
@@ -15,7 +16,8 @@ namespace PipocaAgilPodcast.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<PipocaAgilPodcastContext>(context => context.UseNpgsql(Configuration.GetConnectionString("pipoca-server")));
+            services.AddDbContext<PipocaAgilPodcastContext>(context => 
+                context.UseNpgsql(Configuration.GetConnectionString("pipoca-server")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
