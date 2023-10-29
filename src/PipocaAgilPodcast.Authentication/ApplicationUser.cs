@@ -7,8 +7,6 @@ public class ApplicationUser : IdentityUser<int>
 {
     public ApplicationUser()
     {
-        Permissions = new List<Permission>();
-        
         RegistrationDate = DateTime.UtcNow;
     } 
     
@@ -19,6 +17,6 @@ public class ApplicationUser : IdentityUser<int>
     public DateTime LastAccess { get; set; }
     public bool IsActive { get; set; }
     public string ImageURL { get; set; } = string.Empty;
-    public IEnumerable<Permission> Permissions { get; set; }
+    public required Permission Permissions { get; set; }
 }
     

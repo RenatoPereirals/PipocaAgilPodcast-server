@@ -6,15 +6,13 @@ namespace PipocaAgilPodcast.Domain;
     {
         public User() 
         {
-            UsersActivityLogs = new List<UserActivityLog>();
-            Interests = new List<Interest>();
-            Statistics = new List<ActivityStatistics>();
+            UsersActivitiesLogs = new List<UserActivityLog>();
         }
         
         public string FullName { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-        public IEnumerable<UserActivityLog> UsersActivityLogs { get; set; }
-        public IEnumerable<Interest> Interests { get; set; }
-        public IEnumerable<ActivityStatistics> Statistics { get; set; }
+        public virtual Interest? Interests { get; set; }
+        public virtual ActivityStatistics? Statistics { get; set; }
+        public IEnumerable<UserActivityLog> UsersActivitiesLogs { get; set; }
     }

@@ -1,8 +1,8 @@
-using PipocaAgilPodcast.Domain;
+using PipocaAgilPodcast.Authentication;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
+namespace PipocaAgilPodcast.Interfaces.Authentication;
 
-    public interface IPermissionPersistence
+    public interface IPermissionAuthentication
     {
         Task<IEnumerable<Permission>> GetAllPermissionsAsync();
         Task<Permission> GetPermissionByIdAsync(int id);
