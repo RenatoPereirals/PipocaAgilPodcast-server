@@ -9,11 +9,9 @@ namespace PipocaAgilPodcast.Persistence.Implementations
 {
     public class RepositoryPesistence : IRepositoryPesistence
     {
-        public PipocaAgilPodcastDbContext _context;
-        public RepositoryPesistence(PipocaAgilPodcastDbContext context)
-        {
-            _context = context;
-        }
+        public readonly PipocaAgilPodcastDbContext _context;
+        public RepositoryPesistence(PipocaAgilPodcastDbContext context) => _context = context;
+        
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);

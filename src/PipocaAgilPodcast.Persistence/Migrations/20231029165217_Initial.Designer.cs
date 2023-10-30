@@ -12,8 +12,8 @@ using PipocaAgilPodcast.Persistence.Models;
 namespace PipocaAgilPodcast.Persistence.Migrations
 {
     [DbContext(typeof(PipocaAgilPodcastDbContext))]
-    [Migration("20231029165217_Initial")]
-    partial class Initial
+    [Migration("20231030011839_20231029165217_Initial.cs")]
+    partial class _20231029165217_Initialcs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,6 +133,10 @@ namespace PipocaAgilPodcast.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("text");
 

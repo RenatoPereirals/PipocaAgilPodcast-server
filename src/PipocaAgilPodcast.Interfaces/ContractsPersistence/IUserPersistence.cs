@@ -2,9 +2,9 @@ using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
 
-    public interface IUserPersistence : IRepositoryPesistence
+    public interface IUserPersistence
     {
-        Task<IEnumerable<User>> GetUsersAsync();
+        Task<User[]> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(int id);
         Task<User> GetUserByUserNameAsync(string userName);
     }

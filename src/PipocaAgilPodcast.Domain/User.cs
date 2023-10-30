@@ -10,6 +10,7 @@ namespace PipocaAgilPodcast.Domain;
         }
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
+        public string UserName  { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
         public virtual Interest? Interests { get; set; }
