@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Persistence.Models;
-using SQLitePCL;
 
 namespace PipocaAgilPodcast.Persistence.Implementations
 {
