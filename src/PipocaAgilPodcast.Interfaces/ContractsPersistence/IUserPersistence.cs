@@ -7,4 +7,5 @@ namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
         Task<User[]> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(int id);
         Task<User> GetUserByUserNameAsync(string userName);
+        Task<User[]> GetUsersByInterestAsync(string interestName);
     }

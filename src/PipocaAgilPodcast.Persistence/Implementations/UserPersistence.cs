@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Persistence.Models;
@@ -21,23 +22,28 @@ namespace PipocaAgilPodcast.Persistence.Implementations
         }
         public async Task<User> GetUserByIdAsync(int userId)
         {
-            IQueryable<User> query = _context.Users;
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
-            query = query.OrderBy(u => u.Id)
-                .Where(u => u.Id == userId);
-
-            return await query.FirstOrDefaultAsync() ?? new User();
+            return user ?? new User();
         }
         public async Task<User> GetUserByUserNameAsync(string userName)
         {
-            IQueryable<User> query = _context.Users;
+            var normalizedUserName = userName.ToLower();
+    
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserName.ToLower() == normalizedUserName);
 
-            query = query.OrderBy(u => u.Id)
-                .Where(u => u.UserName.ToLower()
-                .Contains(userName.ToLower()));
-
-            return await query.FirstOrDefaultAsync() ?? new User();
+            return user ?? new User();
         }
+        public async Task<User[]> GetUsersByInterestAsync(string interestName)
+        {
+             var users = await _context.Users
+            .Include(u => u.Interests)
+            .Where(u => u.Interests != null && u.Interests.Any(i => i.Topic == interestName))
+            .ToListAsync();
 
+            return users.ToArray();
+        }
     }
 }
