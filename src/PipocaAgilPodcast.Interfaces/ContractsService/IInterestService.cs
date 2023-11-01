@@ -1,6 +1,6 @@
 using PipocaAgilPodcast.Domain;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
+namespace PipocaAgilPodcast.Interfaces.ContractsServices;
     public interface IInterestService
     {
         Task<IEnumerable<Interest>> GetInterestsAsync();

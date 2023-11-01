@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
+
 namespace PipocaAgilPodcast.Services.Error;
 
 [Serializable]
@@ -18,22 +21,6 @@ public class UserHandlingException : Exception
     {
         throw ex;
     }
-    public static void HandleUserNotCreatedException(Exception ex) // novo usuário não pôde ser criado no sistema
-    {
-        throw ex;
-    }
-    public static void HandleUserNotUpdatedException(Exception ex) // atualização das informações do usuário falhau
-    {
-        throw ex;
-    }
-    public static void HandleUserNotDeletedException(Exception ex)  // exclusão de um usuário falhou
-    {
-        throw ex;
-    }
-    public static void HandleUserAlreadyExistsException(Exception ex) // usuário com o mesmo endereço de e-mail já existe no sistema
-    {
-        throw ex;
-    }
     public static void HandleUserAuthenticationException(Exception ex) // erros de autenticação, como falha no login ou problemas com tokens de autenticação
     {
         throw ex;
@@ -42,12 +29,29 @@ public class UserHandlingException : Exception
     {
         throw ex;
     }
-    public static void HandleUserValidationException(Exception ex) // validações dos campos de usuário não cumpridas
-    {
-        throw ex;
-    }
     public static void HandleUserAccountLockedException(Exception ex) // usuário foi bloqueado devido a tentativas de login mal sucedidas
     {
         throw ex;
     }
+}
+
+public class UserCreationException : UserHandlingException // novo usuário não pôde ser criado no sistema
+{
+    public UserCreationException(string message, DbException ex) : base(message) { }
+}
+public class UserUpdatedException : UserHandlingException // atualização das informações do usuário falhou
+{
+    public UserUpdatedException(string message, DbException ex) : base(message) { }
+}
+public class UserDeletedException : UserHandlingException // exclusão de um usuário falhou
+{
+    public UserDeletedException(string message, DbException ex) : base(message) { }
+}
+public class UserValidationException : UserHandlingException // validações dos campos de usuário não cumpridas
+{
+    public UserValidationException(string message, ValidationException ex) : base(message) { }
+}
+public class UserAlreadyExistsException : UserHandlingException // usuário com o mesmo endereço de e-mail já existe no sistema
+{
+    public UserAlreadyExistsException(string message, Exception ex) : base(message) { }
 }

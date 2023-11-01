@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Interfaces", "PipocaAgilPodcast.Interfaces\PipocaAgilPodcast.Interfaces.csproj", "{6C34A537-37AF-429D-9527-B0DDD8A66E4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipocaAgilPodcast.Services", "PipocaAgilPodcast.Services\PipocaAgilPodcast.Services.csproj", "{42077203-B610-45BF-A8F9-63B277AEB185}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{6C34A537-37AF-429D-9527-B0DDD8A66E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C34A537-37AF-429D-9527-B0DDD8A66E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C34A537-37AF-429D-9527-B0DDD8A66E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42077203-B610-45BF-A8F9-63B277AEB185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42077203-B610-45BF-A8F9-63B277AEB185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42077203-B610-45BF-A8F9-63B277AEB185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42077203-B610-45BF-A8F9-63B277AEB185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
