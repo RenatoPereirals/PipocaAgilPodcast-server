@@ -6,10 +6,10 @@ using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Persistence.Implementations
 {
-    public class UserPersistence : IUserPersistence
+    public class UserService : IUserService
     { 
         public readonly PipocaAgilPodcastDbContext _context;
-        public UserPersistence(PipocaAgilPodcastDbContext context) => _context = context;
+        public UserService(PipocaAgilPodcastDbContext context) => _context = context;
 
         public async Task<User[]> GetAllUsersAsync()
         {

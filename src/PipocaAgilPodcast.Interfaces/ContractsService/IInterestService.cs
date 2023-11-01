@@ -1,7 +1,7 @@
 using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
-    public interface IInterestPersistence
+    public interface IInterestService
     {
         Task<IEnumerable<Interest>> GetInterestsAsync();
         Task<Interest> GetInterestByIdAsync(int id);

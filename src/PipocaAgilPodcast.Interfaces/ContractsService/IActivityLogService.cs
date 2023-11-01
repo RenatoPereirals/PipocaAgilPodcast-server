@@ -3,7 +3,7 @@ using PipocaAgilPodcast.Domain.Enum;
 
 namespace PipocaAgilPodcast.Interfaces.ContractsPersistence;
 
-    public interface IActivityLogPersistence : IRepositoryPesistence
+    public interface IActivityLogService
     {
         Task<ActivityStatistics> GetActivityStatisticsAsync();
         Task<ActivityLog> GetActivityLogByIdAsync(int activityLogId);
