@@ -37,6 +37,29 @@ Os resultados dos testes são gerados em [incluir localização do relatório] e
 
 A cobertura de teste atual é de X%, cobrindo as seguintes partes do código: [incluir detalhes da cobertura de teste].
 
+## Status dos Testes e Versões dos Commits
+
+<table>
+  <thead>
+    <tr>
+      <th>Testes</th>
+      <th>Status</th>
+      <th>Última Versão Commit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Testes de Unidade</td>
+      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
+      <td>abc123</td>
+    </tr>
+    <tr>
+      <td>Testes de Integração</td>
+      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen""></td>
+      <td>def456</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
