@@ -37,21 +37,48 @@ public class UserHandlingException : Exception
 
 public class UserCreationException : UserHandlingException // novo usuário não pôde ser criado no sistema
 {
-    public UserCreationException(string message, DbException ex) : base(message) { }
+    public int StatusCode { get; set; }
+    public UserCreationException(string message, DbException ex, int statusCode)
+        : base(message, ex)
+    {
+        StatusCode = statusCode;
+    }
 }
 public class UserUpdatedException : UserHandlingException // atualização das informações do usuário falhou
 {
-    public UserUpdatedException(string message, DbException ex) : base(message) { }
+    public int StatusCode { get; set; }
+    public UserUpdatedException(string message, DbException ex, int statusCode)
+        : base(message, ex)
+    {
+        StatusCode = statusCode;
+    }
 }
 public class UserDeletedException : UserHandlingException // exclusão de um usuário falhou
 {
-    public UserDeletedException(string message, DbException ex) : base(message) { }
+    public int StatusCode { get; set; }
+    public UserDeletedException(string message, DbException ex, int statusCode)
+        : base(message, ex)
+    {
+        StatusCode = statusCode;
+    }
 }
 public class UserValidationException : UserHandlingException // validações dos campos de usuário não cumpridas
 {
-    public UserValidationException(string message, ValidationException ex) : base(message) { }
+    public int StatusCode { get; set; }
+
+    public UserValidationException(string message, ValidationException ex, int statusCode)
+        : base(message, ex)
+    {
+        StatusCode = statusCode;
+    }
 }
+
 public class UserAlreadyExistsException : UserHandlingException // usuário com o mesmo endereço de e-mail já existe no sistema
 {
-    public UserAlreadyExistsException(string message, Exception ex) : base(message) { }
+    public int StatusCode { get; set; }
+    public UserAlreadyExistsException(string message, DbException ex, int statusCode)
+        : base(message) 
+        {
+            StatusCode = statusCode;
+        }
 }

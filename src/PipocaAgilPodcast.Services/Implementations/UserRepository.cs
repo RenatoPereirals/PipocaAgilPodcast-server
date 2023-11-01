@@ -28,26 +28,27 @@ namespace PipocaAgilPodcast.Services.Implementations
                 response.StatusCode = 201; // Created
                 response.Message = "Usuário criado com sucesso.";
             }
-            catch (ValidationException ex)
+           catch (Exception ex)
             {
-                response.IsSuccess = false;
-                response.StatusCode = 400; // Bad Request
-                response.Message = "Erro ao validar o cadastro.";
-                response.Data = ex.Message;
-            }
-            catch (DbException ex)
-            {
-                response.IsSuccess = false;
-                response.StatusCode = 500; // Internal Server Error
-                response.Message = "Erro ao criar o usuário.";
-                response.Data = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccess = false;
-                response.StatusCode = 409; // Conflict
-                response.Message = "Usuário já está cadastrado.";
-                response.Data = ex.Message;
+                if (ex is DbException dbException)
+                {
+                    if (dbException.Message.Contains("unique constraint violation"))
+                    {
+                        throw new UserAlreadyExistsException("Usuário já está cadastrado.", dbException, 409);
+                    }
+                    else
+                    {
+                        throw new UserCreationException("Erro ao criar o usuário.", dbException, 500);
+                    }
+                }
+                else if (ex is ValidationException validationException)
+                {
+                    throw new UserValidationException("Erro ao validar o cadastro.", validationException, 400);
+                }
+                else
+                {
+                    throw new UserHandlingException("Erro inesperado ao criar o usuário.", ex);
+                }
             }
 
             return response;
@@ -68,10 +69,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
             catch (DbException ex)
             {
-                response.IsSuccess = false;
-                response.StatusCode = 500; // Internal Server Error
-                response.Message = "Erro ao atualizar o usuário.";
-                response.Data = ex.Message;
+                throw new UserUpdatedException("Erro ao atualizar cadastro.", ex, 500); // Internal Server Error
             }
 
             return response;
@@ -92,10 +90,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
             catch (DbException ex)
             {
-                response.IsSuccess = false;
-                response.StatusCode = 500; // Internal Server Error
-                response.Message = "Erro ao deletar o usuário.";
-                response.Data = ex.Message;
+                throw new UserDeletedException("Erro ao deletar usuário.", ex, 500); // Internal Server Error
             }
 
             return response;
@@ -116,10 +111,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
             catch (DbException ex)
             {
-                response.IsSuccess = false;
-                response.StatusCode = 500; // Internal Server Error
-                response.Message = "Erro ao deletar usuários.";
-                response.Data = ex.Message;
+                throw new UserDeletedException("Erro ao deletar usuários.", ex, 500); // Internal Server Error
             }
 
             return response;
