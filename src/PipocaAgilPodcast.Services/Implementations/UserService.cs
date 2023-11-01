@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PipocaAgilPodcast.Domain;
-using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Persistence.Models;
-using PipocaAgilPodcast.Services.Error;
+using PipocaAgilPodcast.Interfaces.ContractsService;
 
 namespace PipocaAgilPodcast.Persistence.Implementations
 {

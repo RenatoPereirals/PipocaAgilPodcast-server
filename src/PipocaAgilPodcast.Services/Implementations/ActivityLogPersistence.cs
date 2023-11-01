@@ -1,26 +1,11 @@
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Domain.Enum;
-using PipocaAgilPodcast.Interfaces.ContractsPersistence;
+using PipocaAgilPodcast.Interfaces.ContractsService;
 
 namespace PipocaAgilPodcast.Persistence.DataImplementations;
 
-public class ActivityLogPersistence : IActivityLogPersistence
+public class ActivityLogPersistence : IActivityLogService
 {
-    public void Add<T>(T entity) where T : class
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Delete<T>(T entity) where T : class
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteRange<T>(T[] entity) where T : class
-    {
-        throw new NotImplementedException();
-    }
-
     public Task<IEnumerable<ActivityLog>> ExportActivityLogAsync(DateTime startDate, DateTime endDate)
     {
         throw new NotImplementedException();
@@ -57,16 +42,6 @@ public class ActivityLogPersistence : IActivityLogPersistence
     }
 
     public Task<IEnumerable<ActivityLog>> GetUserActivityHistoryAsync(int userId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> SaveChangesAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Update<T>(T entity) where T : class
     {
         throw new NotImplementedException();
     }
