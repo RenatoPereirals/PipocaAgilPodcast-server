@@ -7,8 +7,8 @@ public class UserHandlingException : Exception
     public UserHandlingException(string message) : base(message) { }
     public UserHandlingException(string message, Exception inner) : base(message, inner) { }
     protected UserHandlingException(
-        Runtime.Serialization.SerializationInfo info,
-        Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 
     public static void HandleUserNotFoundException(Exception ex) // usuário não é encontrado no sistema
     {

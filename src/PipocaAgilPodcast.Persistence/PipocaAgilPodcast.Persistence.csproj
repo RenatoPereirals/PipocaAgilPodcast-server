@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj" />
     <ProjectReference Include="..\PipocaAgilPodcast.Interfaces\PipocaAgilPodcast.Interfaces.csproj" />
+    <ProjectReference Include="..\PipocaAgilPodcast.Services\PipocaAgilPodcast.Services.csproj" />
 </ItemGroup>
 
 </Project>
