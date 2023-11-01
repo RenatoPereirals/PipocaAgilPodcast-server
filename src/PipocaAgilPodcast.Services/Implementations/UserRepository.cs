@@ -25,7 +25,7 @@ namespace PipocaAgilPodcast.Services.Implementations
                 await _userRepositoryPesistence.SaveChangesAsync();
 
                 response.IsSuccess = true;
-                response.StatusCode = 201; // Created
+                response.StatusCode = 201; // return Created
                 response.Message = "Usuário criado com sucesso.";
             }
            catch (Exception ex)
@@ -34,20 +34,20 @@ namespace PipocaAgilPodcast.Services.Implementations
                 {
                     if (dbException.Message.Contains("unique constraint violation"))
                     {
-                        throw new UserAlreadyExistsException("Usuário já está cadastrado.", dbException, 409);
+                        throw new UserAlreadyExistsException("Usuário já está cadastrado.", dbException, 409); // return conflict
                     }
                     else
                     {
-                        throw new UserCreationException("Erro ao criar o usuário.", dbException, 500);
+                        throw new UserCreationException("Erro ao criar o usuário.", dbException, 500); // return Internal Error Server 
                     }
                 }
                 else if (ex is ValidationException validationException)
                 {
-                    throw new UserValidationException("Erro ao validar o cadastro.", validationException, 400);
+                    throw new UserValidationFailedException("Erro ao validar o cadastro.", validationException, 400); // return Bad Request
                 }
                 else
                 {
-                    throw new UserHandlingException("Erro inesperado ao criar o usuário.", ex);
+                    throw new UserHandlingException("Erro inesperado ao criar o usuário.", ex); // returns an unexpected error 
                 }
             }
 
@@ -64,15 +64,26 @@ namespace PipocaAgilPodcast.Services.Implementations
                 await _userRepositoryPesistence.SaveChangesAsync();
 
                 response.IsSuccess = true;
-                response.StatusCode = 200; // OK
+                response.StatusCode = 200; // return OK
                 response.Message = "Usuário atualizado com sucesso.";
             }
-            catch (DbException ex)
+            catch (Exception ex)
             {
-                throw new UserUpdatedException("Erro ao atualizar cadastro.", ex, 500); // Internal Server Error
+                if (ex is DbException dbException)
+                {
+                    throw new UserCreationException("Erro ao atualizar o usuário.", dbException, 500); // return Internal Error Server            
+                }
+                else if (ex is ValidationException validationException)
+                {
+                    throw new UserValidationFailedException("Erro ao validar a atualização do cadastro.", validationException, 400); // return Bad Request
+                }
+                else
+                {
+                    throw new UserHandlingException("Erro inesperado ao atualizar o usuário.", ex); // returns an unexpected error 
+                }
             }
 
-            return response;
+                return response;
         }
 
         public async Task<ServiceResponse> DeleteUser(User user)
@@ -85,12 +96,19 @@ namespace PipocaAgilPodcast.Services.Implementations
                 await _userRepositoryPesistence.SaveChangesAsync();
 
                 response.IsSuccess = true;
-                response.StatusCode = 204; // No Content
+                response.StatusCode = 204; // return No Content
                 response.Message = "Usuário deletado com sucesso.";
             }
-            catch (DbException ex)
+            catch (Exception ex)
             {
-                throw new UserDeletedException("Erro ao deletar usuário.", ex, 500); // Internal Server Error
+                if (ex is DbException dbException)
+                {
+                    throw new UserDeletedFailedException("Erro ao deletar o usuário.", dbException, 500); // return Internal Error Server             
+                }
+                else
+                {
+                    throw new UserHandlingException("Erro inesperado ao deletar o usuário.", ex); // returns an unexpected error 
+                }
             }
 
             return response;
@@ -106,12 +124,19 @@ namespace PipocaAgilPodcast.Services.Implementations
                 await _userRepositoryPesistence.SaveChangesAsync();
 
                 response.IsSuccess = true;
-                response.StatusCode = 204; // No Content
+                response.StatusCode = 204; // return No Content
                 response.Message = "Usuários deletados com sucesso.";
             }
-            catch (DbException ex)
+            catch (Exception ex)
             {
-                throw new UserDeletedException("Erro ao deletar usuários.", ex, 500); // Internal Server Error
+                if (ex is DbException dbException)
+                {
+                    throw new UserDeletedFailedException("Erro ao deletar o usuários.", dbException, 500); // return Internal Error Server             
+                }
+                else
+                {
+                    throw new UserHandlingException("Erro inesperado ao deletar os usuários.", ex); // returns an unexpected error 
+                }
             }
 
             return response;

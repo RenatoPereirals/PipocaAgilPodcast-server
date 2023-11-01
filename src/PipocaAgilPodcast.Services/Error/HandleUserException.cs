@@ -53,20 +53,20 @@ public class UserUpdatedException : UserHandlingException // atualização das i
         StatusCode = statusCode;
     }
 }
-public class UserDeletedException : UserHandlingException // exclusão de um usuário falhou
+public class UserDeletedFailedException : UserHandlingException // exclusão de um usuário falhou
 {
     public int StatusCode { get; set; }
-    public UserDeletedException(string message, DbException ex, int statusCode)
+    public UserDeletedFailedException(string message, DbException ex, int statusCode)
         : base(message, ex)
     {
         StatusCode = statusCode;
     }
 }
-public class UserValidationException : UserHandlingException // validações dos campos de usuário não cumpridas
+public class UserValidationFailedException : UserHandlingException // validações dos campos de usuário não cumpridas
 {
     public int StatusCode { get; set; }
 
-    public UserValidationException(string message, ValidationException ex, int statusCode)
+    public UserValidationFailedException(string message, ValidationException ex, int statusCode)
         : base(message, ex)
     {
         StatusCode = statusCode;
