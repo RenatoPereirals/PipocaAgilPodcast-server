@@ -55,7 +55,7 @@ A cobertura de teste atual é de X%, cobrindo as seguintes partes do código: [i
     </tr>
     <tr>
       <td>Testes de Integração</td>
-      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen""></td>
+      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
       <td>def456</td>
     </tr>
   </tbody>
