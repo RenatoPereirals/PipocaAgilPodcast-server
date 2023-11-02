@@ -1,37 +1,160 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PipocaAgilPodcast.Persistence.Models;
 using PipocaAgilPodcast.Domain;
-using System.IO;
 using Xunit;
+using System;
+using System.Linq;
 
 namespace PipocaAgilPodcast.Tests
 {
     public class DbContextTests
     {
         [Fact]
-        public void CanAddUserToDatabase()
+        public void CreateUser_InsertsUserIntoDatabase()
         {
-            // Configurar o contexto usando um banco de dados em memória
+            // Arrange            
             var options = new DbContextOptionsBuilder<PipocaAgilPodcastDbContext>()
-                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .UseInMemoryDatabase(databaseName: "CreateUserDatabase")
                 .Options;
 
+            // Act
             using (var context = new PipocaAgilPodcastDbContext(options))
             {
-                // Realize operações no contexto
-                var user = new User { FullName = "John Doe", UserName = "johndoe" };
+                var user = new User
+                {
+                    FullName = "John Doe",
+                    UserName = "johndoe",
+                    ImageURL = "avatar.jpg",
+                    DateOfBirth = new DateTime(1990, 1, 1)
+                };
                 context.Users.Add(user);
                 context.SaveChanges();
             }
 
-            // Verifique se os dados foram salvos corretamente
+            // Assert
             using (var context = new PipocaAgilPodcastDbContext(options))
             {
-                var savedUser = context.Users.Find(1); // Supondo que o ID 1 foi atribuído ao usuário inserido
+                var savedUser = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+
                 Assert.NotNull(savedUser);
                 Assert.Equal("John Doe", savedUser.FullName);
+                Assert.Equal("johndoe", savedUser.UserName);
+                Assert.Equal("avatar.jpg", savedUser.ImageURL);
+                Assert.Equal(new DateTime(1990, 1, 1), savedUser.DateOfBirth);
             }
         }
+
+
+        [Fact]
+        public void GetUserByUserName_ReturnsCorrectUser()
+        {
+            // Arrange            
+            var options = new DbContextOptionsBuilder<PipocaAgilPodcastDbContext>()
+                .UseInMemoryDatabase(databaseName: "GetUserDatabase")
+                .Options;
+
+            // Act
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var user = new User
+                {
+                    FullName = "John Doe",
+                    UserName = "johndoe",
+                    ImageURL = "avatar.jpg",
+                    DateOfBirth = new DateTime(1990, 1, 1)
+                };
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+
+            // Assert
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var user = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+                Assert.NotNull(user);
+                Assert.Equal("John Doe", user.FullName);
+            }
+        }
+        
+        [Fact]
+        public void UpdateUser_UpdatesUserInDatabase()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<PipocaAgilPodcastDbContext>()
+                .UseInMemoryDatabase(databaseName: "UpdateUserDatabase")
+                .Options;
+
+            // Act
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var user = new User
+                {
+                    FullName = "John Doe",
+                    UserName = "johndoe",
+                    ImageURL = "avatar.jpg",
+                    DateOfBirth = new DateTime(1990, 1, 1)
+                };
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+
+            // Act
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var userToUpdate = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+
+                Assert.NotNull(userToUpdate);
+                userToUpdate.FullName = "Updated Name";
+                context.SaveChanges();
+            }
+
+            // Assert
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var updatedUser = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+                Assert.NotNull(updatedUser);
+                Assert.Equal("Updated Name", updatedUser.FullName);
+            }
+        }
+
+        [Fact]
+        public void DeleteUser_RemovesUserFromDatabase()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<PipocaAgilPodcastDbContext>()
+                .UseInMemoryDatabase(databaseName: "DeleteUserDatabase")
+                .Options;
+
+            // Act
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var user = new User
+                {
+                    FullName = "John Doe",
+                    UserName = "johndoe",
+                    ImageURL = "avatar.jpg",
+                    DateOfBirth = new DateTime(1990, 1, 1)
+                };
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+
+           // Act
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var userToDelete = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+                context.Users.Remove(userToDelete);
+                context.SaveChanges();
+            }
+
+            // Assert
+            using (var context = new PipocaAgilPodcastDbContext(options))
+            {
+                var deletedUser = context.Users.FirstOrDefault(u => u.UserName == "johndoe");
+                Assert.Null(deletedUser);
+            }
+        }
+
+        
     }
 }
