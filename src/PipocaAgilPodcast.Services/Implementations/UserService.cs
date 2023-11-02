@@ -20,7 +20,7 @@ namespace PipocaAgilPodcast.Persistence.Implementations
             query = query.OrderBy(u => u.Id);
 
             return await query.ToArrayAsync();
-}
+        }
         public async Task<User> GetUserByIdAsync(int userId)
         {
             var user = await _context.Users

@@ -1,6 +1,6 @@
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Domain.Enum;
-using PipocaAgilPodcast.Interfaces.ContractsService;
+using PipocaAgilPodcast.Interfaces.ContractsServices;
 
 namespace PipocaAgilPodcast.Persistence.DataImplementations;
 
