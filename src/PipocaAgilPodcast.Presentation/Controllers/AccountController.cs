@@ -18,6 +18,12 @@ public class AccountController : ControllerBase
             Name = "Maira",
             Email = "maria@exemplo",
             DateOfBirth = "08/05/1991",
+        },
+         new() {
+            Id = 3,
+            Name = "João",
+            Email = "Joao@exemplo",
+            DateOfBirth = "08/05/2000",
         }
     };
 
