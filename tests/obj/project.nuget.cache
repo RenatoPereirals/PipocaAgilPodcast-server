@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FYGGPjvUj7g6/v9ihtg6OfP9p6G6R+2Oi+Jtkz5hpB7TLfLCWAvxH0OgJA+/NL1V7EGoeqBZTxyipqyV9wrwOA==",
+  "dgSpecHash": "VvXrVFZaCaSUqXOnCmR/ZHQMN3vqBr9RPCs5wFr01EkIwkT4O0gmF9zwl6FAxeN8MjeTPOqIRiwq5AF8ZgLqiQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\tests\\tests.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.13\\microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.13\\microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.13\\microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
+    "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.13\\microsoft.entityframeworkcore.inmemory.7.0.13.nupkg.sha512",
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.13\\microsoft.entityframeworkcore.relational.7.0.13.nupkg.sha512",
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.0\\microsoft.entityframeworkcore.relational.design.1.1.0.nupkg.sha512",
     "C:\\Users\\devad\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\7.0.13\\microsoft.entityframeworkcore.sqlite.7.0.13.nupkg.sha512",

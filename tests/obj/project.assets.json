@@ -128,6 +128,22 @@
           "lib/netstandard2.0/_._": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/7.0.13": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.13"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/7.0.13": {
         "type": "package",
         "dependencies": {
@@ -2781,6 +2797,20 @@
         "lib/netstandard2.0/_._",
         "microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/7.0.13": {
+      "sha512": "HFSMOeNNfCQ16Moy6Rv99/xhVOzW27ND9YcoDJrQ9KocJP8ZONuz5OtTJg9pfKFKblBPj6LWNI496VrAWkECyg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/7.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.7.0.13.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/7.0.13": {
@@ -7331,8 +7361,11 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Microsoft.EntityFrameworkCore >= 7.0.13",
+      "Microsoft.EntityFrameworkCore.InMemory >= 7.0.13",
       "Microsoft.NET.Test.Sdk >= 17.6.0",
       "PipocaAgilPodcast.Domain >= 1.0.0",
+      "PipocaAgilPodcast.Persistence >= 1.0.0",
       "PipocaAgilPodcast.Services >= 1.0.0",
       "coverlet.collector >= 3.2.0",
       "xunit >= 2.6.0",
@@ -7374,6 +7407,9 @@
             "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Domain\\PipocaAgilPodcast.Domain.csproj": {
               "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Domain\\PipocaAgilPodcast.Domain.csproj"
             },
+            "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Persistence\\PipocaAgilPodcast.Persistence.csproj": {
+              "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Persistence\\PipocaAgilPodcast.Persistence.csproj"
+            },
             "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Services\\PipocaAgilPodcast.Services.csproj": {
               "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Services\\PipocaAgilPodcast.Services.csproj"
             }
@@ -7390,6 +7426,14 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.13, )"
+          },
+          "Microsoft.EntityFrameworkCore.InMemory": {
+            "target": "Package",
+            "version": "[7.0.13, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.6.0, )"

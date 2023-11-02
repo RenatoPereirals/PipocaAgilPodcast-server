@@ -417,6 +417,9 @@
               "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Domain\\PipocaAgilPodcast.Domain.csproj": {
                 "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Domain\\PipocaAgilPodcast.Domain.csproj"
               },
+              "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Persistence\\PipocaAgilPodcast.Persistence.csproj": {
+                "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Persistence\\PipocaAgilPodcast.Persistence.csproj"
+              },
               "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Services\\PipocaAgilPodcast.Services.csproj": {
                 "projectPath": "C:\\Users\\devad\\Desktop\\Pipoca-agil-ASPdotNET\\Server\\src\\PipocaAgilPodcast.Services\\PipocaAgilPodcast.Services.csproj"
               }
@@ -433,6 +436,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.6.0, )"
