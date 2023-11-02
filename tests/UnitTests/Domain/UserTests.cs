@@ -18,6 +18,19 @@ namespace tests.UnitTests.Domain;
         }
 
         [Fact]
+        public void User_DefaultValues_AreSet()
+        {
+            // Arrange
+            User user = new User();
+
+            // Assert
+            Assert.Equal(string.Empty, user.FullName);
+            Assert.Equal(string.Empty, user.UserName);
+            Assert.Equal(string.Empty, user.ImageURL);
+            Assert.Equal(DateTime.MinValue, user.DateOfBirth);
+        }
+
+        [Fact]
         public void User_Properties_CanBeSetAndGet()
         {
             // Arrange
