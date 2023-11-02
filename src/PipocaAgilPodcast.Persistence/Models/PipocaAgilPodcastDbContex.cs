@@ -39,7 +39,5 @@ namespace PipocaAgilPodcast.Persistence.Models;
                 optionsBuilder.UseNpgsql(connectionString);
             }
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 

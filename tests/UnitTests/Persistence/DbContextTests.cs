@@ -5,8 +5,8 @@ using Xunit;
 using System;
 using System.Linq;
 
-namespace PipocaAgilPodcast.Tests
-{
+namespace PipocaAgilPodcast.Tests.Persistence;
+
     public class DbContextTests
     {
         [Fact]
@@ -157,4 +157,4 @@ namespace PipocaAgilPodcast.Tests
 
         
     }
-}
+
