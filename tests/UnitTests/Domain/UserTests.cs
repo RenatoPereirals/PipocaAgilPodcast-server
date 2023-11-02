@@ -13,8 +13,8 @@ namespace tests.UnitTests.Domain;
             User user = new User();
 
             // Assert
-            Assert.NotNull (user.Interests);
-            Assert.NotNull (user.UsersActivitiesLogs);
+            Assert.NotNull(user.Interests);
+            Assert.NotNull(user.UsersActivitiesLogs);
         }
 
         [Fact]

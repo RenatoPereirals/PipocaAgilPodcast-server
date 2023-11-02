@@ -1,8 +1,8 @@
 using PipocaAgilPodcast.Domain;
 using Xunit;
 
-namespace tests.UnitTests.Domain
-{
+namespace tests.UnitTests.Domain;
+
     public class InterestTests
     {
         [Fact]
@@ -42,4 +42,4 @@ namespace tests.UnitTests.Domain
             Assert.Equal(new DateTime(1990, 1, 1), interest.CreatedAt);
         }
     }
-}
+
