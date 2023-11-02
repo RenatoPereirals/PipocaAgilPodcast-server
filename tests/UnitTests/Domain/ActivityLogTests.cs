@@ -13,7 +13,7 @@ namespace tests.UnitTests.Domain;
             ActivityLog activityLog = new ActivityLog();
 
             // Assert
-            Assert.NotNull (activityLog.UsersActivitiesLogs);
+            Assert.NotNull(activityLog.UsersActivitiesLogs);
         }
         [Fact]
         public void ActivityLog_DefaultValues_AreSet()
