@@ -12,7 +12,7 @@ namespace tests.UnitTests.Domain;
             UserActivityLog userActivityLog = new UserActivityLog();
 
             // Assert
-            Assert.NotNull(UserActivityLog.User);
-            Assert.NotNull(UserActivityLog.ActivityLog);
+            Assert.NotNull(userActivityLog.Users);
+            Assert.NotNull(userActivityLog.UsersActivitiesLogs);
         }
     }
