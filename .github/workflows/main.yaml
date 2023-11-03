@@ -56,8 +56,8 @@ jobs:
   
       - name: Generate Cobertura XML from coverage.info
         run: |
-          nuget install -OutputDirectory . ReportGenerator
-          ./ReportGenerator/tools/ReportGenerator.exe -reports:./tests/coverage.info -targetdir:./tests/coverage
+          nuget install -OutputDirectory ./ReportGenerator ReportGenerator
+          ./ReportGenerator/ReportGenerator.exe -reports:./tests/coverage.info -targetdir:./tests/coverage -reporttypes:Html;Cobertura
         working-directory: ${{ github.workspace }}
   
       - name: Analyze Test Results and Update README
