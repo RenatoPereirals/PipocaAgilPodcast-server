@@ -6,14 +6,6 @@ on:
       - main
 
 jobs:
-  install-reportgenerator:
-    runs-on: windows-latest
-    steps:
-      - name: Set up .NET and ReportGenerator
-        run: |
-          echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
-          dotnet tool install -g dotnet-reportgenerator-globaltool
-
   build:
     runs-on: windows-latest
 
@@ -24,6 +16,7 @@ jobs:
       - name: Set up .NET
         run: |
           echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
+          dotnet tool install -g dotnet-reportgenerator-globaltool
 
       - name: Restore dependencies
         run: dotnet restore
@@ -57,7 +50,6 @@ jobs:
   update-readme:
     needs:
       - test
-      - install-reportgenerator
     runs-on: windows-latest
     steps:
       - name: Checkout code
