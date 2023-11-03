@@ -63,10 +63,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Generate Cobertura XML from coverage.info
-        run: dotnet reportgenerator "-reports:./tests/coverage.opencover.xml" "-targetdir:./coverage-report" "-reporttypes:Html;Cobertura"
-        working-directory: ${{ github.workspace }}
-
       - name: Analyze Test Results and Update README
         run: |
           if [ -f ./tests/coverage.opencover.xml ]; then
