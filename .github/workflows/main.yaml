@@ -40,8 +40,8 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./src/Tests
+        working-directory: ./tests
 
       - name: Test
         run: dotnet test
-        working-directory: ./Tests
+        working-directory: ./tests
