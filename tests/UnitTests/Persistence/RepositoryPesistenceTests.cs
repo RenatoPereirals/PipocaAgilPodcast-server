@@ -18,7 +18,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         }
 
         [Fact]
-        public void  Create_WithValidData()
+        public void  RepositoryPesistence_Create_WithValidData()
         {
             // Arrange
             var entity = new UserMock();
@@ -31,7 +31,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         }
 
         [Fact]
-        public void Update_WithValidData()
+        public void RepositoryPesistence_Update_WithValidData()
         {
             // Arrange
             var entity = new UserMock();
@@ -44,7 +44,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         }
 
         [Fact]
-        public void Delete_ValidData_DeleteEntityFromDatabase()
+        public void RepositoryPesistence_Delete_ValidData_DeleteEntityFromDatabase()
         {
             // Arrange
             var entity = new UserMock();
@@ -57,7 +57,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         }
 
         [Fact]
-        public void DeleteRange_ValidData_DeletesEntitiesFromDatabase()
+        public void RepositoryPesistence_DeleteRange_ValidData_DeletesEntitiesFromDatabase()
         {
             // Arrange
             var entitiesToDelete = new UserMock[]
@@ -77,7 +77,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         [Theory]
         [InlineData(1, true)]
         [InlineData(0, false)]
-        public async Task SaveChangesAsync_WhenChangesExist_ReturnsExpectedResult(int expectedResult, bool expectedValue)
+        public async Task RepositoryPesistence_SaveChangesAsync_WhenChangesExist_ReturnsExpectedResult(int expectedResult, bool expectedValue)
         {
             // Arrange
             var mockDbContext = new Mock<PipocaAgilPodcastDbContext>();
