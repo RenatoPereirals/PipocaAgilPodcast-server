@@ -5,33 +5,33 @@ on:
     branches:
       - main
 
-      jobs:
-        install-reportgenerator: # Defina um trabalho para instalar o ReportGenerator
-          runs-on: windows-latest
-          steps:
-            - name: Set up .NET and ReportGenerator
-              run: |
-                echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
-                dotnet tool install -g dotnet-reportgenerator-globaltool
-      
-        build:
-          runs-on: windows-latest
-      
-          steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-      
-            - name: Set up .NET
-              run: |
-                echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
+jobs:
+  install-reportgenerator:
+    runs-on: windows-latest
+    steps:
+      - name: Set up .NET and ReportGenerator
+        run: |
+          echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
+          dotnet tool install -g dotnet-reportgenerator-globaltool
 
-            - name: Restore dependencies
-              run: dotnet restore
-              working-directory: ./src/PipocaAgilPodcast.Presentation
+  build:
+    runs-on: windows-latest
 
-            - name: Build
-              run: dotnet build --configuration Release
-              working-directory: ./src/PipocaAgilPodcast.Presentation
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        run: |
+          echo "::add-path::$(dotnet --list-sdks --list-runtimes)"
+
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ./src/PipocaAgilPodcast.Presentation
+
+      - name: Build
+        run: dotnet build --configuration Release
+        working-directory: ./src/PipocaAgilPodcast.Presentation
 
   test:
     runs-on: windows-latest
