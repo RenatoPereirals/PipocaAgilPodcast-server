@@ -55,9 +55,7 @@ jobs:
         uses: actions/checkout@v2
   
       - name: Generate Cobertura XML from coverage.info
-        run: |
-          nuget install -OutputDirectory ./ReportGenerator ReportGenerator
-          ./ReportGenerator/ReportGenerator.exe -reports:./tests/coverage.info -targetdir:./tests/coverage -reporttypes:Html;Cobertura
+        run: dotnet reportgenerator "-reports:./tests/coverage.opencover.xml" "-targetdir:./coverage-report" "-reporttypes:Html;Cobertura"
         working-directory: ${{ github.workspace }}
   
       - name: Analyze Test Results and Update README
