@@ -53,13 +53,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+  
+      - name: Generate Cobertura XML from coverage.info
+        run: |
+          nuget install -OutputDirectory . ReportGenerator
+          ./ReportGenerator/tools/ReportGenerator.exe -reports:./tests/coverage.info -targetdir:./tests/coverage
+        working-directory: ${{ github.workspace }}
+  
       - name: Analyze Test Results and Update README
         run: |
-          if [ -f ./tests/coverage.opencover.xml ]; then
+          if [ -f ./tests/coverage/coverage.opencover.xml ]; then
             # Calculate test status based on the coverage report
             coverageThreshold=80  # Define your desired coverage threshold here
-            coverage=$(bash <(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml)
+            coverage=$(bash <(curl -s https://codecov.io/bash) -f ./tests/coverage/coverage.opencover.xml)
             echo "Code coverage: $coverage%"
             
             if (( $(echo "$coverage < $coverageThreshold" | bc -l) )); then
