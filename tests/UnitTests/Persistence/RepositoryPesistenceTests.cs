@@ -14,12 +14,11 @@ namespace PipocaAgilPodcast.Tests.Persistence;
         {
             // Configuração comum para todos os testes
             mockDbContext = new Mock<PipocaAgilPodcastDbContext>();
-            mockDbContext.Setup(db => db.SaveChangesAsync(default)).Returns(Task.FromResult(1));
             repository = new RepositoryPesistence(mockDbContext.Object);
         }
 
         [Fact]
-        public void  Create_WithValidData_SavesToDatabase()
+        public void  Create_WithValidData()
         {
             // Arrange
             var entity = new UserMock();
@@ -28,11 +27,11 @@ namespace PipocaAgilPodcast.Tests.Persistence;
             repository.Add(entity);
 
             // Assert
-            mockDbContext.Verify(db => db.Add(entity), Times.Once); // Verifique se Add foi chamado uma vez
+            mockDbContext.Verify(db => db.Add(entity), Times.Once); // Verifica se o método Add foi chamado uma vez
         }
 
         [Fact]
-        public void Update_WithValidData_SavesToDatabase()
+        public void Update_WithValidData()
         {
             // Arrange
             var entity = new UserMock();
@@ -41,11 +40,11 @@ namespace PipocaAgilPodcast.Tests.Persistence;
             repository.Update(entity);
 
             // Assert
-            mockDbContext.Verify(db => db.Update(entity), Times.Once); // Verifique se Update foi chamado uma vez
+            mockDbContext.Verify(db => db.Update(entity), Times.Once); // Verifica se o método Update foi chamado uma vez
         }
 
         [Fact]
-        public void Delete_WithValidData_DeletesEntityFromDatabase()
+        public void Delete_ValidData_DeleteEntityFromDatabase()
         {
             // Arrange
             var entity = new UserMock();
@@ -54,11 +53,11 @@ namespace PipocaAgilPodcast.Tests.Persistence;
             repository.Delete(entity);
 
             // Assert
-            mockDbContext.Verify(db => db.Remove(entity), Times.Once); // Verifique se Remove foi chamado uma vez
+            mockDbContext.Verify(db => db.Remove(entity), Times.Once); // Verifica se o método Remove foi chamado uma vez
         }
 
         [Fact]
-        public void DeleteRange_WithValidData_DeletesEntitiesFromDatabase()
+        public void DeleteRange_ValidData_DeletesEntitiesFromDatabase()
         {
             // Arrange
             var entitiesToDelete = new UserMock[]
@@ -72,7 +71,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
             repository.DeleteRange(entitiesToDelete);
 
             // Assert
-            mockDbContext.Verify(db => db.RemoveRange(entitiesToDelete), Times.Once); // Verifique se RemoveRange foi chamado uma vez
+            mockDbContext.Verify(db => db.RemoveRange(entitiesToDelete), Times.Once); // Verifica se o método RemoveRange foi chamado uma vez
         }
 
         [Theory]
@@ -91,7 +90,7 @@ namespace PipocaAgilPodcast.Tests.Persistence;
 
             // Assert
             Assert.Equal(expectedValue, result); // Verifica o resultado esperado (true, false)
-            mockDbContext.Verify(db => db.SaveChangesAsync(default), Times.Once); // Verifique se SaveChangesAsync foi chamado uma vez
+            mockDbContext.Verify(db => db.SaveChangesAsync(default), Times.Once); // Verifica se o método SaveChangesAsync foi chamado uma vez
         }
     }
 
