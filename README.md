@@ -54,6 +54,30 @@ A API oferece uma variedade de endpoints para acessar e manipular os dados relac
 ## Testes Automatizados
 
 Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](tests/README.md).
+## Status dos Testes e Versões dos Commits
+
+<table>
+  <thead>
+    <tr>
+      <th>Testes</th>
+      <th>Status</th>
+      <th>Última Versão Commit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Testes de Unidade</td>
+      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
+      <td>abc123</td>
+    </tr>
+    <tr>
+      <td>Testes de Integração</td>
+      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
+      <td>def456</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Contribuindo
 
