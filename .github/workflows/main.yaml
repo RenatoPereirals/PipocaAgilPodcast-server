@@ -47,5 +47,38 @@ jobs:
         working-directory: ./tests
 
       - name: Test with Coverage
-        run: dotnet dotnet test --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         working-directory: ./tests
+
+  update-readme:
+    needs:
+      - test
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Analyze Test Results and Update README
+        run: |
+          if [ -f ./tests/coverage.opencover.xml ]; then
+            # Calculate test status based on the coverage report
+            coverageThreshold=80  # Define your desired coverage threshold here
+            coverage=$(bash <(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml)
+            echo "Code coverage: $coverage%"
+            
+            if (( $(echo "$coverage < $coverageThreshold" | bc -l) )); then
+              echo "Test coverage is below the threshold. Tests are failing."
+              echo "::set-output name=unitTestsStatus::failing"
+            else
+              echo "Test coverage meets the threshold. Tests are passing."
+              echo "::set-output name=unitTestsStatus::passing"
+            fi
+          else
+            echo "No code coverage report found. Assuming tests are passing."
+            echo "::set-output name=unitTestsStatus::passing"
+          fi
+          
+          # Update the README with the status
+          status=$(/bin/bash -c "echo \${unitTestsStatus}")
+          sed -i "s/<td>Testes de Unidade<\/td>/<td>Testes de Unidade<\/td>\n<td><img src=\"https://img.shields.io/badge/tests-$status-brightgreen\"></td>/" README.md
+        working-directory: ${{ github.workspace }}
