@@ -72,7 +72,7 @@ jobs:
     needs:
       - test
       - install-reportgenerator
-      
+
     runs-on: windows-latest
     steps:
       - name: Checkout código
@@ -87,13 +87,17 @@ jobs:
       - name: List Workspace Contents
         run: ls -R $GITHUB_WORKSPACE
       
-
+      - name: Calculate code coverage
+        run: |
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working-directory: ./tests
+      
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
             # Calcular o status dos testes com base no relatório de cobertura
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
-            $coverage = Invoke-Expression -Command "codecov -f D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml"
+            $coverage = bash -c "$(curl -s https://codecov.io/bash) -f D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml"
             Write-Host "Cobertura de código: $coverage"
         
             if ($coverage -lt $coverageThreshold) {
@@ -111,9 +115,9 @@ jobs:
           # Definir a variável de ambiente 'status'
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
-          $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
+          $codeCoverage = 50  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
-              $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
+              $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\README.md"
               $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
               Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
           } else {
