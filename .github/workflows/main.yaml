@@ -120,10 +120,12 @@ jobs:
           git config --global credential.helper store --file ~/.git-credentials
   
           echo "https://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:x-oauth-basic@github.com" >> ~/.git-credentials
-  
+          
+          git checkout -b atualizacao-readme
           git add README.md
           git commit -m "Atualização automática do README"
-          git push origin main
+          git push origin atualizacao-readme
+          # git push origin main
         working-directory: .
         
   
