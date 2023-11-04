@@ -10,6 +10,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Debug Files in Workspace
+        run: |
+          # List files and directories in the workspace
+          dir "${{ github.workspace }}"
+        shell: bash
+        
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -61,7 +67,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          Get-ChildItem -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server" -Recurse
+          dir "${{ github.workspace }}"
         shell: bash
 
 
