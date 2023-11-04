@@ -60,9 +60,6 @@ jobs:
       - install-reportgenerator # Ensure the tool is installed before running ReportGenerator
     runs-on: windows-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Analyze Test Results and Update README
         run: |
           if (Test-Path -Path .\tests\coverage.opencover.xml) {
@@ -70,7 +67,7 @@ jobs:
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
             Write-Host "Cobertura de código: $coverage"
-      
+        
             if ($coverage -lt $coverageThreshold) {
               Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
               echo "::set-output name=unitTestsStatus::failing"
@@ -85,8 +82,10 @@ jobs:
           
           # Atualize o README com o status
           $status = $env:unitTestsStatus
-          (Get-Content README.md) | ForEach-Object { $_ -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>" } | Set-Content README.md
+          $readmeContent = Get-Content README.md
+          $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>"
+          Set-Content README.md $readmeContent
         shell: pwsh
-      
         working-directory: ${{ github.workspace }}
+    
       
