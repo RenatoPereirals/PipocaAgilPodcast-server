@@ -61,8 +61,9 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          ls -R ${{ github.workspace }}
+          ls -R "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server"
         shell: bash
+
 
       # - name: Analyze Test Results and Update README
       #   run: |
