@@ -77,10 +77,14 @@ Aqui estão as informações de status dos testes e cobertura de código:
   <tbody>
     <tr>
       <td>Testes de Unidade</td>
-      <td><!-- INSERT_TOTAL_TESTS --> </td>
-      <td><!-- INSERT_PASSED_TESTS --></td>
-      <td><!-- INSERT_COVERAGE --></td>
-      <td><!-- INSERT_COMMIT_VERSION --></td>
+      <td><!-- INSERT_TOTAL_TESTS -->
+Total Tests:  </td>
+      <td><!-- INSERT_PASSED_TESTS -->
+Passed Tests: </td>
+      <td><!-- INSERT_COVERAGE -->
+Code Coverage: 0</td>
+      <td><!-- INSERT_COMMIT_VERSION -->
+Commit Version: 484ec56606e61ec0deda599d575dbc044f2d325f</td>
     </tr>
     <!-- Adicione mais linhas para outros tipos de testes -->
   </tbody>
