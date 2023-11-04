@@ -80,6 +80,10 @@ jobs:
           ls -la $GITHUB_WORKSPACE
         shell: bash
 
+      - name: List Workspace Contents
+        run: ls -R $GITHUB_WORKSPACE
+      
+
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
           if (Test-Path -Path "$GITHUB_WORKSPACE/tests/coverage.opencover.xml") {
