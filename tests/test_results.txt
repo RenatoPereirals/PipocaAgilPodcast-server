@@ -1,8 +1,0 @@
-Execu├º├úo de teste para C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\tests\bin\Debug\net7.0\tests.dll (.NETCoreApp,Version=v7.0)
-Ferramenta de Linha de Comando de Execu├º├úo de Teste da Microsoft (R) Vers├úo 17.7.0-preview-23364-03+bc17bb9693cfc4778ded51aa0ab7f1065433f989 (x64)
-Copyright (c) Microsoft Corporation. Todos os direitos reservados.
-
-Iniciando execu├º├úo de teste, espere...
-1 arquivos de teste no total corresponderam ao padr├úo especificado.
-
-Aprovado!  ÔÇô Com falha:     0, Aprovado:    29, Ignorado:     0, Total:    29, Dura├º├úo: 1 s - tests.dll (net7.0)

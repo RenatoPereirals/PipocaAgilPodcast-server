@@ -1,1 +1,0 @@
-MSBUILD : error MSB1003: Especifique um arquivo de solu├º├úo ou de projeto. O diret├│rio de trabalho atual n├úo cont├®m um arquivo de solu├º├úo ou de projeto.
