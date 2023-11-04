@@ -10,10 +10,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          ls "${{ github.workspace }}"
+          ls -la $GITHUB_WORKSPACE
         shell: bash
 
       - name: Checkout code
@@ -36,12 +37,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          ls "${{ github.workspace }}"
+          ls -la $GITHUB_WORKSPACE
         shell: bash
-        
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -70,10 +72,11 @@ jobs:
       - install-reportgenerator
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          dir "${{ github.workspace }}"
+          ls -la $GITHUB_WORKSPACE
         shell: bash
 
 
