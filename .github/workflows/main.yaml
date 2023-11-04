@@ -67,23 +67,24 @@ jobs:
         run: |
           if [ -f ./tests/coverage.opencover.xml ]; then
             # Calculate test status based on the coverage report
-            coverageThreshold=80  # Define your desired coverage threshold here
+            coverageThreshold=80  # Defina o limite de cobertura desejado aqui
             coverage=$(bash <(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml)
-            echo "Code coverage: $coverage%"
-
+            echo "Cobertura de código: $coverage%"
+      
             if (( $(echo "$coverage < $coverageThreshold" | bc -l) )); then
-              echo "Test coverage is below the threshold. Tests are failing."
+              echo "A cobertura de teste está abaixo do limite. Os testes falharam."
               echo "::set-output name=unitTestsStatus::failing"
             else
-              echo "Test coverage meets the threshold. Tests are passing."
+              echo "A cobertura de teste atende ao limite. Os testes estão passando."
               echo "::set-output name=unitTestsStatus::passing"
             fi
           else
-            echo "No code coverage report found. Assuming tests are passing."
+            echo "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
             echo "::set-output name=unitTestsStatus::passing"
           fi
-
+      
           # Update the README with the status
           status=$(/bin/bash -c "echo \${unitTestsStatus}")
           sed -i "s/<td>Testes de Unidade<\/td>/<td>Testes de Unidade<\/td>\n<td><img src=\"https://img.shields.io/badge/tests-$status-brightgreen\"></td>/" README.md
         working-directory: ${{ github.workspace }}
+      
