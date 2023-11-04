@@ -61,7 +61,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          ls -R "${{ github.workspace }}"
+          dir /S /B "${{ github.workspace }}"
         shell: bash
 
 
