@@ -80,10 +80,11 @@ jobs:
             echo "::set-output name=unitTestsStatus::passing"
           }
           
-          # Atualize o README com o status
-          $status = $env:unitTestsStatus
+          # Atualize o README com o status dos testes e a cobertura de código
+          status = $env:unitTestsStatus
+          codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
           $readmeContent = Get-Content README.md
-          $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>"
+          $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
           Set-Content README.md $readmeContent
         shell: pwsh
         working-directory: ${{ github.workspace }}

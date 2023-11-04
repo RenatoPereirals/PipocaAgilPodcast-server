@@ -55,29 +55,29 @@ A API oferece uma variedade de endpoints para acessar e manipular os dados relac
 
 Para obter informações detalhadas sobre os testes automatizados, consulte o [README de Testes](tests/README.md).
 
-## Status dos Testes e Versões dos Commits
+
+## Status dos Testes e Cobertura de Código
+
+Aqui estão as informações de status dos testes e cobertura de código:
 
 <table>
   <thead>
     <tr>
       <th>Testes</th>
       <th>Status</th>
-      <th>Última Versão Commit</th>
+      <th>Cobertura de Código</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Testes de Unidade</td>
-      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
-      <td>abc123</td>
+      <td><img src="https://img.shields.io/badge/tests-$unitTestsStatus-brightgreen"></td>
+      <td><img src="https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen"></td>
     </tr>
-    <tr>
-      <td>Testes de Integração</td>
-      <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
-      <td>def456</td>
-    </tr>
+    <!-- Adicione mais linhas para outros tipos de testes -->
   </tbody>
 </table>
+
 
 
 ## Contribuindo
