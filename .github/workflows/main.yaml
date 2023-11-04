@@ -64,42 +64,42 @@ jobs:
           ls -R ${{ github.workspace }}
         shell: bash
 
-      - name: Analyze Test Results and Update README
-        run: |
-          if (Test-Path -Path ./tests/coverage.opencover.xml) {
-            # Calculate test status based on the coverage report
-            $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
-            $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
-            Write-Host "Cobertura de código: $coverage"
+      # - name: Analyze Test Results and Update README
+      #   run: |
+      #     if (Test-Path -Path ./tests/coverage.opencover.xml) {
+      #       # Calculate test status based on the coverage report
+      #       $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
+      #       $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
+      #       Write-Host "Cobertura de código: $coverage"
 
-            if ($coverage -lt $coverageThreshold) {
-              Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
-              echo "::set-output name=unitTestsStatus::failing"
-            } else {
-              Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
-              echo "::set-output name=unitTestsStatus::passing"
-            }
-          } else {
-            Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
-            echo "::set-output name=unitTestsStatus::passing"
-          }
+      #       if ($coverage -lt $coverageThreshold) {
+      #         Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
+      #         echo "::set-output name=unitTestsStatus::failing"
+      #       } else {
+      #         Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
+      #         echo "::set-output name=unitTestsStatus::passing"
+      #       }
+      #     } else {
+      #       Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
+      #       echo "::set-output name=unitTestsStatus::passing"
+      #     }
 
-          # Defina a variável de ambiente 'status'
-          echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
+      #     # Defina a variável de ambiente 'status'
+      #     echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
-          # Atualize o README com o status dos testes e a cobertura de código
-          $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
-          if (Test-Path -Path ./README.md) {
-            $readmeContent = Get-Content ./README.md
-            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
-            Set-Content ./README.md $readmeContent
-          } else {
-            Write-Host "O arquivo README.md não foi encontrado."
-          }
+      #     # Atualize o README com o status dos testes e a cobertura de código
+      #     $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
+      #     if (Test-Path -Path ./README.md) {
+      #       $readmeContent = Get-Content ./README.md
+      #       $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
+      #       Set-Content ./README.md $readmeContent
+      #     } else {
+      #       Write-Host "O arquivo README.md não foi encontrado."
+      #     }
           
-          Set-Content README.md $readmeContent
-        shell: pwsh
-        working-directory: ${{ github.workspace }}
+      #     Set-Content README.md $readmeContent
+      #   shell: pwsh
+      #   working-directory: ${{ github.workspace }}
 
     
       
