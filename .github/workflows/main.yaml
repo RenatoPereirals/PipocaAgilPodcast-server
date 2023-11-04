@@ -63,7 +63,7 @@ jobs:
           # List files and directories in the workspace
           ls -R ${{ github.workspace }}
         shell: bash
-        
+
       - name: Analyze Test Results and Update README
         run: |
           if (Test-Path -Path ./tests/coverage.opencover.xml) {
@@ -90,11 +90,11 @@ jobs:
           # Atualize o README com o status dos testes e a cobertura de código
           $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path ./README.md) {
-          $readmeContent = Get-Content ./README.md
-          $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
-              Set-Content ./README.md $readmeContent
+            $readmeContent = Get-Content ./README.md
+            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
+            Set-Content ./README.md $readmeContent
           } else {
-              Write-Host "O arquivo README.md não foi encontrado."
+            Write-Host "O arquivo README.md não foi encontrado."
           }
           
           Set-Content README.md $readmeContent
