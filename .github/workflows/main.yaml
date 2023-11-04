@@ -115,7 +115,7 @@ jobs:
           # Definir a variável de ambiente 'status'
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
-          $codeCoverage = 50  # Substitua 85 pela porcentagem real de cobertura de código
+          $codeCoverage = 0  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
               $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\README.md"
               $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
