@@ -71,7 +71,7 @@ Aqui estão as informações de status dos testes e cobertura de código:
   <tbody>
     <tr>
       <td>Testes de Unidade</td>
-      <td><img src="https://img.shields.io/badge/tests-$unitTestsStatus-brightgreen"></td>
+      <td><img src="https://img.shields.io/badge/tests-$status -brightgreen"></td>
       <td><img src="https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen"></td>
     </tr>
     <!-- Adicione mais linhas para outros tipos de testes -->
