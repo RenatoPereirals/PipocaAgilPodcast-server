@@ -52,7 +52,7 @@ jobs:
       - name: Install ReportGenerator
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-  update-readme:
+  calculate-coverage:
     needs:
       - test
       - install-reportgenerator
@@ -64,37 +64,27 @@ jobs:
 
       - name: Calculate code coverage
         run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working-directory: ./tests
-
+          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
+            $coverage = [xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml")
+            $lineCoverage = [float]$coverage.CoverageReport.Modules.Module[1].Metrics.Metric | Where-Object { $_.Name -eq 'Line' }
+            $branchCoverage = [float]$coverage.CoverageReport.Modules.Module[1].Metrics.Metric | Where-Object { $_.Name -eq 'Branch' }
+            $methodCoverage = [float]$coverage.CoverageReport.Modules.Module[1].Metrics.Metric | Where-Object { $_.Name -eq 'Method' }
+            echo "::set-output name=lineCoverage::$lineCoverage"
+            echo "::set-output name=branchCoverage::$branchCoverage"
+            echo "::set-output name=methodCoverage::$methodCoverage"
+          }
+      
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
-          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
-            # Calcular o status dos testes com base no relatório de cobertura
-            $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
-            $coverage = [float]([xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml")).CoverageReport.Lines.CoveredPercent
-            Write-Host "Cobertura de código: $coverage"
-        
-            if ($coverage -lt $coverageThreshold) {
-                Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
-                echo "::set-output name=unitTestsStatus::failing"
-            } else {
-                Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
-                echo "::set-output name=unitTestsStatus::passing"
-            }
-          } else {
-            Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
-            echo "::set-output name=unitTestsStatus::passing"
-          }
-
-          # Definir a variável de ambiente 'status'
-          echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
-
-          $codeCoverage = 0  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
             $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
-            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
+            $lineCoverage = ${{ steps.calculate-coverage.outputs.lineCoverage }}
+            $branchCoverage = ${{ steps.calculate-coverage.outputs.branchCoverage }}
+            $methodCoverage = ${{ steps.calculate-coverage.outputs.methodCoverage }}
+            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/line-coverage-$lineCoverage%-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/branch-coverage-$branchCoverage%-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/method-coverage-$methodCoverage%-brightgreen`"></td>"
             Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
           } else {
             Write-Host "O arquivo README.md não foi encontrado."
           }
+        env:
+          status: ${{ steps.calculate-coverage.outputs.status }}
