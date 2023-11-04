@@ -65,26 +65,28 @@ jobs:
 
       - name: Analyze Test Results and Update README
         run: |
-          if [ -f ./tests/coverage.opencover.xml ]; then
+          if (Test-Path -Path .\tests\coverage.opencover.xml) {
             # Calculate test status based on the coverage report
-            coverageThreshold=80  # Defina o limite de cobertura desejado aqui
-            coverage=$(bash <(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml)
-            echo "Cobertura de código: $coverage%"
+            $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
+            $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
+            Write-Host "Cobertura de código: $coverage"
       
-            if (( $(echo "$coverage < $coverageThreshold" | bc -l) )); then
-              echo "A cobertura de teste está abaixo do limite. Os testes falharam."
+            if ($coverage -lt $coverageThreshold) {
+              Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
               echo "::set-output name=unitTestsStatus::failing"
-            else
-              echo "A cobertura de teste atende ao limite. Os testes estão passando."
+            } else {
+              Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
               echo "::set-output name=unitTestsStatus::passing"
-            fi
-          else
-            echo "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
+            }
+          } else {
+            Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
             echo "::set-output name=unitTestsStatus::passing"
-          fi
+          }
+          
+          # Atualize o README com o status
+          $status = $env:unitTestsStatus
+          (Get-Content README.md) | ForEach-Object { $_ -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>" } | Set-Content README.md
+        shell: pwsh
       
-          # Update the README with the status
-          status=$(/bin/bash -c "echo \${unitTestsStatus}")
-          sed -i "s/<td>Testes de Unidade<\/td>/<td>Testes de Unidade<\/td>\n<td><img src=\"https://img.shields.io/badge/tests-$status-brightgreen\"></td>/" README.md
         working-directory: ${{ github.workspace }}
       
