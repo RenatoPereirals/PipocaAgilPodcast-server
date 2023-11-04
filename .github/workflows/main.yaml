@@ -61,7 +61,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          ls -R ${{ github.workspace }}
+          ls -R "${{ github.workspace }}"
         shell: bash
 
 
@@ -100,7 +100,7 @@ jobs:
           
       #     Set-Content README.md $readmeContent
       #   shell: pwsh
-      #   working-directory: ${{ github.workspace }}
+      #   working-directory: "${{ github.workspace }}"
 
     
       
