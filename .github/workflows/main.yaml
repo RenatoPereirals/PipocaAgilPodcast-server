@@ -108,15 +108,18 @@ jobs:
           } else {
             Write-Host "O arquivo README.md não foi encontrado."
           }
-          
+
         env:
           total_tests: ${{ steps.test.outputs.total_tests }}
           passed_tests: ${{ steps.test.outputs.passed_tests }}
   
       - name: Atualizar README e fazer commit
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      
         run: |
           git config --global user.email "renatopreirals@gmail.com"
-          git config --global user.name "Renato Pereira"
+          git config --global user.name "@RenatoPereirals"
           git config --global credential.helper store --file ~/.git-credentials
   
           echo "https://GH_TOKEN:x-oauth-basic@github.com" >> ~/.git-credentials
