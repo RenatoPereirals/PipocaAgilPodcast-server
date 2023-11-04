@@ -2,13 +2,13 @@
 <CoverageSession>
   <Summary numSequencePoints="690" visitedSequencePoints="78" numBranchPoints="20" visitedBranchPoints="1" sequenceCoverage="11.3" branchCoverage="5" maxCyclomaticComplexity="53" minCyclomaticComplexity="0" visitedClasses="9" numClasses="32" visitedMethods="39" numMethods="115" />
   <Modules>
-    <Module hash="62D053E7-DFC6-4EAE-B810-B715D6DF975A">
+    <Module hash="97824752-C8E2-47BD-8BED-E76EA950E223">
       <ModulePath>PipocaAgilPodcast.Authentication.dll</ModulePath>
-      <ModuleTime>2023-11-03T10:47:01</ModuleTime>
+      <ModuleTime>2023-11-04T05:02:21</ModuleTime>
       <ModuleName>PipocaAgilPodcast.Authentication</ModuleName>
       <Files>
-        <File uid="1" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Authentication\ApplicationUser.cs" />
-        <File uid="2" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Authentication\Permission.cs" />
+        <File uid="1" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Authentication\ApplicationUser.cs" />
+        <File uid="2" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Authentication\Permission.cs" />
       </Files>
       <Classes>
         <Class>
@@ -204,16 +204,16 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="7A3DCCFD-971B-401F-984F-7ADC7C9A0EFB">
+    <Module hash="60F7A6D4-E1D7-40E3-8782-784C570384FC">
       <ModulePath>PipocaAgilPodcast.Domain.dll</ModulePath>
-      <ModuleTime>2023-11-03T10:47:01</ModuleTime>
+      <ModuleTime>2023-11-04T05:02:21</ModuleTime>
       <ModuleName>PipocaAgilPodcast.Domain</ModuleName>
       <Files>
-        <File uid="3" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Domain\ActivityLog.cs" />
-        <File uid="4" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Domain\ActivityStatistics.cs" />
-        <File uid="5" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Domain\Interest.cs" />
-        <File uid="6" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Domain\User.cs" />
-        <File uid="7" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Domain\UserActivityLog.cs" />
+        <File uid="3" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Domain\ActivityLog.cs" />
+        <File uid="4" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Domain\ActivityStatistics.cs" />
+        <File uid="5" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Domain\Interest.cs" />
+        <File uid="6" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Domain\User.cs" />
+        <File uid="7" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Domain\UserActivityLog.cs" />
       </Files>
       <Classes>
         <Class>
@@ -684,24 +684,24 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="8349F763-6B53-4F3A-B24F-4F7D98FA7504">
+    <Module hash="14C3D5F1-1DFC-4A66-9C62-782FC2A8C2E8">
       <ModulePath>PipocaAgilPodcast.Interfaces.dll</ModulePath>
-      <ModuleTime>2023-11-03T10:47:01</ModuleTime>
+      <ModuleTime>2023-11-04T05:02:21</ModuleTime>
       <ModuleName>PipocaAgilPodcast.Interfaces</ModuleName>
       <Files />
       <Classes />
     </Module>
-    <Module hash="2F2873F8-D7CF-44A4-A694-6B7A77230B73">
+    <Module hash="115A5B72-2A1F-4B07-8F10-E2CA260597B1">
       <ModulePath>PipocaAgilPodcast.Persistence.dll</ModulePath>
-      <ModuleTime>2023-11-03T10:47:01</ModuleTime>
+      <ModuleTime>2023-11-04T05:02:21</ModuleTime>
       <ModuleName>PipocaAgilPodcast.Persistence</ModuleName>
       <Files>
-        <File uid="8" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Models\PipocaAgilPodcastDbContex.cs" />
-        <File uid="9" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Migrations\20231029165217_Initial.cs" />
-        <File uid="10" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Migrations\20231029165217_Initial.Designer.cs" />
-        <File uid="11" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Migrations\PipocaAgilPodcastDbContextModelSnapshot.cs" />
-        <File uid="12" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Implementations\RepositoryPesistence.cs" />
-        <File uid="13" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Persistence\Implementations\UserRepository.cs" />
+        <File uid="8" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Models\PipocaAgilPodcastDbContex.cs" />
+        <File uid="9" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Migrations\20231029165217_Initial.cs" />
+        <File uid="10" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Migrations\20231029165217_Initial.Designer.cs" />
+        <File uid="11" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Migrations\PipocaAgilPodcastDbContextModelSnapshot.cs" />
+        <File uid="12" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Implementations\RepositoryPesistence.cs" />
+        <File uid="13" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Persistence\Implementations\UserRepository.cs" />
       </Files>
       <Classes>
         <Class>
@@ -1397,16 +1397,16 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="4591DDE5-5DCF-4782-9F56-A03EE7196DA9">
+    <Module hash="E78D2622-B7C2-41CB-A852-2D59588390EC">
       <ModulePath>PipocaAgilPodcast.Services.dll</ModulePath>
-      <ModuleTime>2023-11-03T10:47:01</ModuleTime>
+      <ModuleTime>2023-11-04T05:02:21</ModuleTime>
       <ModuleName>PipocaAgilPodcast.Services</ModuleName>
       <Files>
-        <File uid="14" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Services\Implementations\UserService.cs" />
-        <File uid="15" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Services\Implementations\ActivityLogPersistence.cs" />
-        <File uid="16" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Services\Serviceresponse.cs" />
-        <File uid="17" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Services\Implementations\UserRepository.cs" />
-        <File uid="18" fullPath="C:\Users\devad\Desktop\Pipoca-agil-ASPdotNET\Server\src\PipocaAgilPodcast.Services\Error\HandleUserException.cs" />
+        <File uid="14" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Services\Implementations\UserService.cs" />
+        <File uid="15" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Services\Implementations\ActivityLogPersistence.cs" />
+        <File uid="16" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Services\Serviceresponse.cs" />
+        <File uid="17" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Services\Implementations\UserRepository.cs" />
+        <File uid="18" fullPath="C:\Users\devad\desktop\Pipoca-agil-ASPdotNET\server\src\PipocaAgilPodcast.Services\Error\HandleUserException.cs" />
       </Files>
       <Classes>
         <Class>
