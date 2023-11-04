@@ -10,14 +10,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Debug Files in Workspace
-        run: |
-          # List files and directories in the workspace
-          ls -la $PWD
-          ls -la $GITHUB_WORKSPACE
-        shell: bash
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -38,14 +30,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Debug Files in Workspace
-        run: |
-          # List files and directories in the workspace
-          ls -la $PWD
-          ls -la $GITHUB_WORKSPACE
-        shell: bash
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -78,20 +62,11 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v2
 
-      - name: Debug Arquivos no Workspace
-        run: |
-          # Listar arquivos e diretórios no workspace
-          ls -la $GITHUB_WORKSPACE
-        shell: bash
-
-      - name: List Workspace Contents
-        run: ls -R $GITHUB_WORKSPACE
-      
       - name: Calculate code coverage
         run: |
           dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         working-directory: ./tests
-      
+
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
@@ -107,24 +82,19 @@ jobs:
                 Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
                 echo "::set-output name=unitTestsStatus::passing"
             }
-            } else {
-                Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
-                echo "::set-output name=unitTestsStatus::passing"
-            }
+          } else {
+            Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
+            echo "::set-output name=unitTestsStatus::passing"
+          }
 
           # Definir a variável de ambiente 'status'
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
           $codeCoverage = 0  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
-              $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\README.md"
-              $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
-              Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
+            $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
+            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
+            Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
           } else {
-              Write-Host "O arquivo README.md não foi encontrado."
+            Write-Host "O arquivo README.md não foi encontrado."
           }
-
-        shell: pwsh
-
-    
-      
