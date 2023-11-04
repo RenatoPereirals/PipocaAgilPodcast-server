@@ -43,11 +43,11 @@ jobs:
         working-directory: ./tests
   
       - name: Test
-        id: test # Defina um ID para referenciar as saídas
+        id: test
         run: |
           dotnet test
-          echo "::set-output name=total_tests::100" # Defina a saída total_tests
-          echo "::set-output name=passed_tests::95"  # Defina a saída passed_tests
+          echo "::set-output name=total_tests::100" 
+          echo "::set-output name=passed_tests::95"
         working-directory: ./tests
         
 
@@ -74,8 +74,7 @@ jobs:
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
-            # Calcular o status dos testes com base no relatório de cobertura
-            $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
+            $coverageThreshold = 80
             $coverage = [float]([xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml")).CoverageReport.Lines.CoveredPercent
             Write-Host "Cobertura de código: $coverage"
   
@@ -91,12 +90,10 @@ jobs:
             echo "::set-output name=unitTestsStatus::passing"
           }
   
-          # Definir a variável de ambiente 'status'
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
-  
-          # Substitua 85 pela porcentagem real de cobertura de código
-          $codeCoverage = $coverage  # Use a cobertura calculada
-          $commit_version = $env:GITHUB_SHA  # Use a variável de ambiente do GitHub
+
+          $codeCoverage = $coverage
+          $commit_version = $env:GITHUB_SHA
   
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
             $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
@@ -122,7 +119,7 @@ jobs:
           git config --global user.name "@RenatoPereirals"
           git config --global credential.helper store --file ~/.git-credentials
   
-          echo "https://GH_TOKEN:x-oauth-basic@github.com" >> ~/.git-credentials
+          echo "https://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:x-oauth-basic@github.com" >> ~/.git-credentials
   
           git add README.md
           git commit -m "Atualização automática do README"
