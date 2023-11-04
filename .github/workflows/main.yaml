@@ -66,10 +66,6 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v2
   
-      - name: Calculate code coverage
-        run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working-directory: ./tests
   
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
@@ -125,8 +121,8 @@ jobs:
           git add README.md
           git commit -m "Atualização automática do README"
           git push origin atualizacao-readme
+          git checkout atualizacao-readme
           git merge main
-          git checkout main
           git push origin main
         working-directory: .
         
