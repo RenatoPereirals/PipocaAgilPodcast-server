@@ -97,7 +97,7 @@ jobs:
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
             # Calcular o status dos testes com base no relatório de cobertura
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
-            $coverage = bash -c "$(curl -s https://codecov.io/bash) -f D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml"
+            $coverage = Invoke-Expression -Command "codecov -f D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml"
             Write-Host "Cobertura de código: $coverage"
         
             if ($coverage -lt $coverageThreshold) {
