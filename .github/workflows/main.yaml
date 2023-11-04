@@ -86,7 +86,7 @@ jobs:
 
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
-          if (Test-Path -Path "$GITHUB_WORKSPACE/tests/coverage.opencover.xml") {
+          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml") {
             # Calcular o status dos testes com base no relatório de cobertura
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = bash -c "$(curl -s https://codecov.io/bash) -f $GITHUB_WORKSPACE/tests/coverage.opencover.xml"
@@ -108,13 +108,14 @@ jobs:
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
           $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
-          if (Test-Path -Path "$GITHUB_WORKSPACE/README.md") {
-            $readmeContent = Get-Content "$GITHUB_WORKSPACE/README.md"
-            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
-            Set-Content "$GITHUB_WORKSPACE/README.md" $readmeContent
+          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
+          $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
+          $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
+          Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
           } else {
             Write-Host "O arquivo README.md não foi encontrado."
           }
+
         shell: pwsh
 
     
