@@ -13,9 +13,9 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          dir "${{ github.workspace }}"
+          ls "${{ github.workspace }}"
         shell: bash
-        
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -36,6 +36,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Debug Files in Workspace
+        run: |
+          # List files and directories in the workspace
+          ls "${{ github.workspace }}"
+        shell: bash
+        
       - name: Checkout code
         uses: actions/checkout@v2
 
