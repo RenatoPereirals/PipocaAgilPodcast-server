@@ -121,8 +121,8 @@ jobs:
           git add README.md
           git commit -m "Atualização automática do README"
           git push origin atualizacao-readme
-          git checkout atualizacao-readme
-          git merge main
+          git checkout main
+          git merge atualizacao-readme
           git push origin main
         working-directory: .
         
