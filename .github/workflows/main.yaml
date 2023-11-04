@@ -61,7 +61,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
-          dir "${{ github.workspace }}"
+          Get-ChildItem -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server" -Recurse
         shell: bash
 
 
