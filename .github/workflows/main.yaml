@@ -58,6 +58,12 @@ jobs:
       - install-reportgenerator
     runs-on: windows-latest
     steps:
+      - name: Debug Files in Workspace
+        run: |
+          # List files and directories in the workspace
+          ls -R ${{ github.workspace }}
+        shell: bash
+        
       - name: Analyze Test Results and Update README
         run: |
           if (Test-Path -Path ./tests/coverage.opencover.xml) {
@@ -90,7 +96,7 @@ jobs:
           } else {
               Write-Host "O arquivo README.md não foi encontrado."
           }
-
+          
           Set-Content README.md $readmeContent
         shell: pwsh
         working-directory: ${{ github.workspace }}
