@@ -46,6 +46,10 @@ jobs:
         id: test
         run: |
           dotnet test
+          test_results=$(dotnet test --list-tests --no-build --no-restore)
+          total_tests=$(echo "$test_results" | grep -c "Total tests")
+          passed_tests=$(echo "$test_results" | grep -c "Passed")
+          
           echo "::set-output name=total_tests::100" 
           echo "::set-output name=passed_tests::95"
         working-directory: ./tests
@@ -121,9 +125,9 @@ jobs:
           git add README.md
           git commit -m "Atualização automática do README"
           git push origin atualizacao-readme
-          # git checkout main
-          # git merge atualizacao-readme
-          # git push origin main
+# git checkout main
+# git merge atualizacao-readme
+# git push origin main
         working-directory: .
         
   
