@@ -51,13 +51,11 @@ jobs:
     steps:
       - name: Install ReportGenerator
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
-        # You might need to add the tool installation to the PATH
-        # run: echo "::add-path::$(dotnet --list-sdks)/$(dotnet --list-runtimes)"
 
   update-readme:
     needs:
       - test
-      - install-reportgenerator # Ensure the tool is installed before running ReportGenerator
+      - install-reportgenerator
     runs-on: windows-latest
     steps:
       - name: Analyze Test Results and Update README
@@ -67,7 +65,7 @@ jobs:
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
             Write-Host "Cobertura de código: $coverage"
-        
+
             if ($coverage -lt $coverageThreshold) {
               Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
               echo "::set-output name=unitTestsStatus::failing"
@@ -79,14 +77,17 @@ jobs:
             Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
             echo "::set-output name=unitTestsStatus::passing"
           }
-          
+
+          # Defina a variável de ambiente 'status'
+          echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
+
           # Atualize o README com o status dos testes e a cobertura de código
-          status = $env:unitTestsStatus
           codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
           $readmeContent = Get-Content README.md
           $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
           Set-Content README.md $readmeContent
         shell: pwsh
         working-directory: ${{ github.workspace }}
+
     
       
