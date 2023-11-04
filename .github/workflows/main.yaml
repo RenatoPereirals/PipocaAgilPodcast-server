@@ -14,6 +14,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
+          ls -la $PWD
           ls -la $GITHUB_WORKSPACE
         shell: bash
 
@@ -41,6 +42,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
+          ls -la $PWD
           ls -la $GITHUB_WORKSPACE
         shell: bash
 
@@ -76,6 +78,7 @@ jobs:
       - name: Debug Files in Workspace
         run: |
           # List files and directories in the workspace
+          ls -la $PWD
           ls -la $GITHUB_WORKSPACE
         shell: bash
 
