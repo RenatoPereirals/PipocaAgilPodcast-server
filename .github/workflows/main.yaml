@@ -60,7 +60,7 @@ jobs:
     steps:
       - name: Analyze Test Results and Update README
         run: |
-          if (Test-Path -Path \tests\coverage.opencover.xml) {
+          if (Test-Path -Path tests\coverage.opencover.xml) {
             # Calculate test status based on the coverage report
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
@@ -83,7 +83,7 @@ jobs:
 
           # Atualize o README com o status dos testes e a cobertura de código
           $codeCoverage = 85  # Substitua 85 pela porcentagem real de cobertura de código
-          $readmeContent = Get-Content \README.md
+          $readmeContent = Get-Content README.md
           $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`"https://img.shields.io/badge/tests-$status-brightgreen`"></td>`n<td><img src=`"https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`"></td>"
           Set-Content README.md $readmeContent
         shell: pwsh
