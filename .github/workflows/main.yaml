@@ -60,7 +60,7 @@ jobs:
     steps:
       - name: Analyze Test Results and Update README
         run: |
-          if (Test-Path -Path .\tests\coverage.opencover.xml) {
+          if (Test-Path -Path ..\tests\coverage.opencover.xml) {
             # Calculate test status based on the coverage report
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = bash -c "$(curl -s https://codecov.io/bash) -f ./tests/coverage.opencover.xml"
