@@ -60,19 +60,27 @@ Para obter informações detalhadas sobre os testes automatizados, consulte o [R
 
 Aqui estão as informações de status dos testes e cobertura de código:
 
+## Status dos Testes e Cobertura de Código
+
+Aqui estão as informações de status dos testes e cobertura de código:
+
 <table>
   <thead>
     <tr>
       <th>Testes</th>
-      <th>Status</th>
+      <th>Total de Testes</th>
+      <th>Testes Passados</th>
       <th>Cobertura de Código</th>
+      <th>Versão do Commit</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Testes de Unidade</td>
-      <td><img src="https://img.shields.io/badge/tests-$status -brightgreen"></td>
-      <td><img src="https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen"></td>
+      <td><!-- INSERT_TOTAL_TESTS --> </td>
+      <td><!-- INSERT_PASSED_TESTS --></td>
+      <td><!-- INSERT_COVERAGE --></td>
+      <td><!-- INSERT_COMMIT_VERSION --></td>
     </tr>
     <!-- Adicione mais linhas para outros tipos de testes -->
   </tbody>

@@ -56,17 +56,16 @@ jobs:
     needs:
       - test
       - install-reportgenerator
-
     runs-on: windows-latest
     steps:
       - name: Checkout código
         uses: actions/checkout@v2
-
+  
       - name: Calculate code coverage
         run: |
           dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         working-directory: ./tests
-
+  
       - name: Analisar Resultados dos Testes e Atualizar README
         run: |
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
@@ -74,7 +73,7 @@ jobs:
             $coverageThreshold = 80  # Defina o limite de cobertura desejado aqui
             $coverage = [float]([xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml")).CoverageReport.Lines.CoveredPercent
             Write-Host "Cobertura de código: $coverage"
-        
+  
             if ($coverage -lt $coverageThreshold) {
                 Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
                 echo "::set-output name=unitTestsStatus::failing"
@@ -86,15 +85,23 @@ jobs:
             Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
             echo "::set-output name=unitTestsStatus::passing"
           }
-
+  
           # Definir a variável de ambiente 'status'
           echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
-
+  
           $codeCoverage = 0  # Substitua 85 pela porcentagem real de cobertura de código
           if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
             $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
-            $readmeContent = $readmeContent -replace '<td>Testes de Unidade</td>', "<td>Testes de Unidade</td>`n<td><img src=`'https://img.shields.io/badge/tests-$status-brightgreen`'></td>`n<td><img src=`'https://img.shields.io/badge/coverage-$codeCoverage%-brightgreen`'></td>"
+            $readmeContent = $readmeContent -replace '<!-- INSERT_TOTAL_TESTS -->', "<!-- INSERT_TOTAL_TESTS -->`nTotal Tests: $total_tests"
+            $readmeContent = $readmeContent -replace '<!-- INSERT_PASSED_TESTS -->', "<!-- INSERT_PASSED_TESTS -->`nPassed Tests: $passed_tests"
+            $readmeContent = $readmeContent -replace '<!-- INSERT_COVERAGE -->', "<!-- INSERT_COVERAGE -->`nCode Coverage: $codeCoverage"
+            $readmeContent = $readmeContent -replace '<!-- INSERT_COMMIT_VERSION -->', "<!-- INSERT_COMMIT_VERSION -->`nCommit Version: $commit_version"
             Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
           } else {
             Write-Host "O arquivo README.md não foi encontrado."
           }
+        env:
+          total_tests: ${{ steps.test.outputs.total_tests }}
+          passed_tests: ${{ steps.test.outputs.passed_tests }}
+          commit_version: ${{ github.sha }}
+  
