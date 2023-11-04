@@ -57,7 +57,7 @@ jobs:
       - name: Install ReportGenerator
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-  update-readme:
+  ceate-readme:
     needs:
       - test
       - install-reportgenerator
@@ -109,7 +109,17 @@ jobs:
         env:
           total_tests: ${{ steps.test.outputs.total_tests }}
           passed_tests: ${{ steps.test.outputs.passed_tests }}
-  
+
+  Update-readme:
+    needs:
+      - ceate-readme
+      
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
       - name: Atualizar README e fazer commit
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
