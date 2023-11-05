@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tests.FeatureTests
-{
+namespace tests.FeatureTests;
     public class UserMock
     {
         public int Id { get; set; }
@@ -13,4 +12,3 @@ namespace tests.FeatureTests
         public string ImageURL { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
     }
-}

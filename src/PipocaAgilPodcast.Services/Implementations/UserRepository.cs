@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
-using Microsoft.Extensions.Logging;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Services.Error;

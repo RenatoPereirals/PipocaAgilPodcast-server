@@ -7,7 +7,7 @@ using PipocaAgilPodcast.Interfaces.ContractsServices;
 
 using PipocaAgilPodcast.Services.Error;
 
-namespace PipocaAgilPodcast.Persistence.Implementations
+namespace PipocaAgilPodcast.Services.Implementations
 {
     public class UserService : IUserService
     { 
