@@ -55,6 +55,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
             // Arrange
             var user = new User();
             
+            // Configurar o mock do UserRepository para simular sucesso ou falha
             if (isSuccess)
             {
                 ConfigureRepositoryForMethod(AddUser, user);
@@ -111,6 +112,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
                 else
                 {
                     Assert.False(response.IsSuccess);
+
                     Assert.IsType(expectedExceptionType, exception);
                     Assert.Equal(expectedStatusCode, response.StatusCode);
                     Assert.Equal(expectedMessage, response.Message);
@@ -127,6 +129,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
             // Arrange
             var user = new User();
             
+            // Configurar o mock do UserRepository para simular sucesso ou falha
             if (isSuccess)
             {
                 ConfigureRepositoryForMethod(UpdateUser, user);
@@ -171,6 +174,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
                 else
                 {
                     Assert.False(response.IsSuccess);
+
                     Assert.IsType(expectedExceptionType, exception);
                     Assert.Equal(expectedStatusCode, response.StatusCode);
                     Assert.Equal(expectedMessage, response.Message);
@@ -186,6 +190,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
             // Arrange
             var user = new User();
             
+            // Configurar o mock do UserRepository para simular sucesso ou falha
             if (isSuccess)
             {
                 ConfigureRepositoryForMethod(DeleteUser, user);
@@ -226,6 +231,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
                 else
                 {
                     Assert.False(response.IsSuccess);
+
                     Assert.IsType(expectedExceptionType, exception);
                     Assert.Equal(expectedStatusCode, response.StatusCode);
                     Assert.Equal(expectedMessage, response.Message);
@@ -287,6 +293,7 @@ namespace PipocaAgilPodcast.Services.Implementations.Tests;
                 else
                 {
                     Assert.False(response.IsSuccess);
+
                     Assert.IsType(expectedExceptionType, exception);
                     Assert.Equal(expectedStatusCode, response.StatusCode);
                     Assert.Equal(expectedMessage, response.Message);
