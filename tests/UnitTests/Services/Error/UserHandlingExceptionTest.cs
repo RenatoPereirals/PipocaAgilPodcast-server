@@ -36,8 +36,13 @@ namespace tests.UnitTests.Services.Error;
         [Fact]
         public void UserHandlingException_ConstructorWithInnerException_SetsInnerException()
         {
+            // Arrange
             var innerException = new Exception("Inner Exception");
+
+            // Act
             var exception = new UserHandlingException("Test Message", innerException);
+
+            // Assert
             Assert.Same(innerException, exception.InnerException);
         }
 
