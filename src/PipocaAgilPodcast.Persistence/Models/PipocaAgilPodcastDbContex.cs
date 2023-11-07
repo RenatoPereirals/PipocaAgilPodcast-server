@@ -32,10 +32,10 @@ namespace PipocaAgilPodcast.Persistence.Models;
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.Development.json") // Use o arquivo de configuração correto
+                    .AddJsonFile("appsettings.Development.json")
                     .Build();
 
-                string? connectionString = configuration.GetConnectionString("pipoca-server"); // Use o nome correto da conexão
+                string? connectionString = configuration.GetConnectionString("pipoca-server");
                 optionsBuilder.UseNpgsql(connectionString);
             }
         }
