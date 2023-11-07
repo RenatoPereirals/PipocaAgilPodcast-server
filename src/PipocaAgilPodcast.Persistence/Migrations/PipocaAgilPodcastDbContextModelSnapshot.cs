@@ -46,7 +46,7 @@ namespace PipocaAgilPodcast.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivityHistory");
+                    b.ToTable("ActivityHistory", (string)null);
                 });
 
             modelBuilder.Entity("PipocaAgilPodcast.Domain.ActivityStatistics", b =>
@@ -82,7 +82,7 @@ namespace PipocaAgilPodcast.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Statisticss");
+                    b.ToTable("Statisticss", (string)null);
                 });
 
             modelBuilder.Entity("PipocaAgilPodcast.Domain.Interest", b =>
@@ -111,7 +111,7 @@ namespace PipocaAgilPodcast.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Interests");
+                    b.ToTable("Interests", (string)null);
                 });
 
             modelBuilder.Entity("PipocaAgilPodcast.Domain.User", b =>
@@ -139,7 +139,7 @@ namespace PipocaAgilPodcast.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("PipocaAgilPodcast.Domain.UserActivityLog", b =>
@@ -154,7 +154,7 @@ namespace PipocaAgilPodcast.Persistence.Migrations
 
                     b.HasIndex("ActivityLogId");
 
-                    b.ToTable("UsersActivitiesLogs");
+                    b.ToTable("UsersActivitiesLogs", (string)null);
                 });
 
             modelBuilder.Entity("PipocaAgilPodcast.Domain.ActivityStatistics", b =>
