@@ -43,6 +43,8 @@ A cobertura de teste atual é de X%, cobrindo as seguintes partes do código: [i
   <thead>
     <tr>
       <th>Testes</th>
+      <th>Total</th>
+      <th>Aprovados</th>
       <th>Status</th>
       <th>Última Versão Commit</th>
     </tr>
@@ -50,6 +52,7 @@ A cobertura de teste atual é de X%, cobrindo as seguintes partes do código: [i
   <tbody>
     <tr>
       <td>Testes de Unidade</td>
+      <td></td>
       <td><img src="https://img.shields.io/badge/tests-passing-brightgreen"></td>
       <td>abc123</td>
     </tr>
