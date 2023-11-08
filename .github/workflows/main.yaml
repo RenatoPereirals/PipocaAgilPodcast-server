@@ -123,5 +123,4 @@ jobs:
           git push origin atualizacao-readme
           git checkout atualizacao-readme
           git merge main
-          git push origin main
         working-directory: .
