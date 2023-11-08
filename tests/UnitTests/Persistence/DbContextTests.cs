@@ -1,8 +1,7 @@
+using Xunit;
 using Microsoft.EntityFrameworkCore;
 using PipocaAgilPodcast.Persistence.Models;
 using PipocaAgilPodcast.Domain;
-using Xunit;
-using System;
 using System.Linq;
 
 namespace PipocaAgilPodcast.Tests.Persistence;
