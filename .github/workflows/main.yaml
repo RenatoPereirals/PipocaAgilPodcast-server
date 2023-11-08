@@ -117,10 +117,10 @@ jobs:
   
   #         echo "https://GH_TOKEN:x-oauth-basic@github.com" >> ~/.git-credentials
           
-  #         git checkout -b atualizacao-readme
-  #         git add README.md
-  #         git commit -m "Atualização automática do README"
-  #         git push origin atualizacao-readme
-  #         git checkout atualizacao-readme
-  #         git merge main
-  #       working-directory: .
+        #   git checkout -b atualizacao-readme
+        #   git add README.md
+        #   git commit -m "Atualização automática do README"
+        #   git push origin atualizacao-readme
+        #   git checkout atualizacao-readme
+        #   git merge main
+        # working-directory: .
