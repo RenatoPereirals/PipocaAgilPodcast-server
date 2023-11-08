@@ -51,11 +51,11 @@ jobs:
         working-directory: ./tests
         
 
-  install-reportgenerator:
-    runs-on: windows-latest
-    steps:
-      - name: Install ReportGenerator
-        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+  # install-reportgenerator:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Install ReportGenerator
+  #       run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
   # update-readme:
   #   needs:
