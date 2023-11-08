@@ -57,70 +57,70 @@ jobs:
       - name: Install ReportGenerator
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-  update-readme:
-    needs:
-      - test
-      - install-reportgenerator
-    runs-on: windows-latest
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v2
+  # update-readme:
+  #   needs:
+  #     - test
+  #     - install-reportgenerator
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Checkout código
+  #       uses: actions/checkout@v2
   
   
-      - name: Analisar Resultados dos Testes e Atualizar README
-        run: |
-          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
-            $coverageThreshold = 80
-            $coverage = [float]([xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml")).CoverageReport.Lines.CoveredPercent
-            Write-Host "Cobertura de código: $coverage"
+  #     - name: Analisar Resultados dos Testes e Atualizar README
+  #       run: |
+  #         if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server\tests\coverage.opencover.xml") {
+  #           $coverageThreshold = 80
+  #           $coverage = [float]([xml](Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/tests/coverage.opencover.xml")).CoverageReport.Lines.CoveredPercent
+  #           Write-Host "Cobertura de código: $coverage"
   
-            if ($coverage -lt $coverageThreshold) {
-                Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
-                echo "::set-output name=unitTestsStatus::failing"
-            } else {
-                Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
-                echo "::set-output name=unitTestsStatus::passing"
-            }
-          } else {
-            Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
-            echo "::set-output name=unitTestsStatus::passing"
-          }
+  #           if ($coverage -lt $coverageThreshold) {
+  #               Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
+  #               echo "::set-output name=unitTestsStatus::failing"
+  #           } else {
+  #               Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
+  #               echo "::set-output name=unitTestsStatus::passing"
+  #           }
+  #         } else {
+  #           Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
+  #           echo "::set-output name=unitTestsStatus::passing"
+  #         }
   
-          echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
+  #         echo "status=$env:unitTestsStatus" >> $GITHUB_ENV
 
-          $codeCoverage = $coverage
-          $commit_version = $env:GITHUB_SHA
+  #         $codeCoverage = $coverage
+  #         $commit_version = $env:GITHUB_SHA
   
-          if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
-            $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
-            $readmeContent = $readmeContent -replace '<!-- INSERT_TOTAL_TESTS -->', "<!-- INSERT_TOTAL_TESTS -->`nTotal Tests: $total_tests"
-            $readmeContent = $readmeContent -replace '<!-- INSERT_PASSED_TESTS -->', "<!-- INSERT_PASSED_TESTS -->`nPassed Tests: $passed_tests"
-            $readmeContent = $readmeContent -replace '<!-- INSERT_COVERAGE -->', "<!-- INSERT_COVERAGE -->`nCode Coverage: $codeCoverage"
-            $readmeContent = $readmeContent -replace '<!-- INSERT_COMMIT_VERSION -->', "<!-- INSERT_COMMIT_VERSION -->`nCommit Version: $commit_version"
-            Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
-          } else {
-            Write-Host "O arquivo README.md não foi encontrado."
-          }
+  #         if (Test-Path -Path "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md") {
+  #           $readmeContent = Get-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md"
+  #           $readmeContent = $readmeContent -replace '<!-- INSERT_TOTAL_TESTS -->', "<!-- INSERT_TOTAL_TESTS -->`nTotal Tests: $total_tests"
+  #           $readmeContent = $readmeContent -replace '<!-- INSERT_PASSED_TESTS -->', "<!-- INSERT_PASSED_TESTS -->`nPassed Tests: $passed_tests"
+  #           $readmeContent = $readmeContent -replace '<!-- INSERT_COVERAGE -->', "<!-- INSERT_COVERAGE -->`nCode Coverage: $codeCoverage"
+  #           $readmeContent = $readmeContent -replace '<!-- INSERT_COMMIT_VERSION -->', "<!-- INSERT_COMMIT_VERSION -->`nCommit Version: $commit_version"
+  #           Set-Content "D:\a\PipocaAgilPodcast-server\PipocaAgilPodcast-server/README.md" $readmeContent
+  #         } else {
+  #           Write-Host "O arquivo README.md não foi encontrado."
+  #         }
 
-        env:
-          total_tests: ${{ steps.test.outputs.total_tests }}
-          passed_tests: ${{ steps.test.outputs.passed_tests }}
+  #       env:
+  #         total_tests: ${{ steps.test.outputs.total_tests }}
+  #         passed_tests: ${{ steps.test.outputs.passed_tests }}
   
-      - name: Atualizar README e fazer commit
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  #     - name: Atualizar README e fazer commit
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       
-        run: |
-          git config --global user.email "renatopreirals@gmail.com"
-          git config --global user.name "RenatoPereirals"
-          git config --global credential.helper store --file ~/.git-credentials
+  #       run: |
+  #         git config --global user.email "renatopreirals@gmail.com"
+  #         git config --global user.name "RenatoPereirals"
+  #         git config --global credential.helper store --file ~/.git-credentials
   
-          echo "https://GH_TOKEN:x-oauth-basic@github.com" >> ~/.git-credentials
+  #         echo "https://GH_TOKEN:x-oauth-basic@github.com" >> ~/.git-credentials
           
-          git checkout -b atualizacao-readme
-          git add README.md
-          git commit -m "Atualização automática do README"
-          git push origin atualizacao-readme
-          git checkout atualizacao-readme
-          git merge main
-        working-directory: .
+  #         git checkout -b atualizacao-readme
+  #         git add README.md
+  #         git commit -m "Atualização automática do README"
+  #         git push origin atualizacao-readme
+  #         git checkout atualizacao-readme
+  #         git merge main
+  #       working-directory: .
