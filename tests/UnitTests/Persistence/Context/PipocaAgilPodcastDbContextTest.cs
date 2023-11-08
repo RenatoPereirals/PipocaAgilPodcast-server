@@ -20,7 +20,7 @@ namespace tests.UnitTests.Persistence.Context;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure o entity models aqui
+            // Configura o entity models aqui
             modelBuilder.Entity<UserActivityLog>().HasKey(ua => new { ua.UserId, ua.ActivityLogId });
         }
 
