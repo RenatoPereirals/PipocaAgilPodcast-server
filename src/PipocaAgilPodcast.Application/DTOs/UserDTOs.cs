@@ -7,8 +7,24 @@ namespace PipocaAgilPodcast.Application.DTOs
 {
     public class UserDTOs
     {
-        public int Id { get; set; }
+        public UserDTOs(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
+        {
+            this.Id = id;
+            this.FullName = fullName;
+            this.UserName = userName;
+            this.ImageURL = imageURL;
+            this.DateOfBirth = dateOfBirth;
+   
+        }
 
+        public UserDTOs()
+        {
+            UsersActivitiesLogs = new List<UserActivityLog>();
+            Interests = new List<Interest>();
+            Statistics = new ActivityStatistics();
+        }
+
+        public int Id { get; set; }
         [Display(Name = "Nome Completo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [StringLength(50, MinimumLength = 4,
