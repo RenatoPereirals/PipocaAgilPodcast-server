@@ -21,7 +21,6 @@ namespace PipocaAgilPodcast.Application.DTOs
         {
             UsersActivitiesLogs = new List<UserActivityLog>();
             Interests = new List<Interest>();
-            Statistics = new ActivityStatistics();
         }
 
         public int Id { get; set; }
