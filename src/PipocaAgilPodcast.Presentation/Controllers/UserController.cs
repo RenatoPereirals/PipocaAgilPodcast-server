@@ -65,19 +65,5 @@ namespace PipocaAgilPodcast.Controllers
                 return StatusCode(500, "Ocorreu um erro ao buscar o usuário por nome de usuário: " + ex.Message);
             }
         }
-
-        [HttpGet("Interesse")]
-        public async Task<ActionResult<UserDTO[]>> GetUsersByInterest(string interestName)
-        {
-            try
-            {
-                var users = await _userService.GetUsersByInterestAsync(interestName);
-                return Ok(users);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Ocorreu um erro ao buscar os usuários por interesse: " + ex.Message);
-            }
-        }
     }
 }
