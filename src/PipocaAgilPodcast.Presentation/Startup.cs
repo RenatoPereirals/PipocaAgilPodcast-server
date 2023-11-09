@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using PipocaAgilPodcast.Interfaces.ContractsPersistence;
+using PipocaAgilPodcast.Interfaces.ContractsServices;
+using PipocaAgilPodcast.Persistence.Models;
+using PipocaAgilPodcast.Services.Implementations;
 
 namespace PipocaAgilPodcast.Presentation
 {
@@ -17,7 +18,20 @@ namespace PipocaAgilPodcast.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.Development.json")
+                .Build();
+
+            services.AddDbContext<PipocaAgilPodcastDbContext>(context =>
+            
+                context.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddControllers();
+
+            services.AddScoped<IUserService, UserService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PipocaAgilPodcast.Presentation", Version = "v1" });

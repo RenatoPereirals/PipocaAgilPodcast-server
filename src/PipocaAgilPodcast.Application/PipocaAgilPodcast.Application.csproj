@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj" />
-    <ProjectReference Include="..\PipocaAgilPodcast.Persistence\PipocaAgilPodcast.Persistence.csproj" />
     <ProjectReference Include="..\PipocaAgilPodcast.Infrastructure\PipocaAgilPodcast.Infrastructure.csproj" />
   </ItemGroup>
 

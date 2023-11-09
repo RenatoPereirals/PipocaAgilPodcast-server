@@ -4,9 +4,9 @@ using PipocaAgilPodcast.Infrastructure.ValidationAttributes;
 
 namespace PipocaAgilPodcast.Application.DTOs
 {
-    public class UserDTOs
+    public class UserDTO
     {
-        public UserDTOs(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
+        public UserDTO(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
         {
             this.Id = id;
             this.FullName = fullName;
@@ -16,7 +16,7 @@ namespace PipocaAgilPodcast.Application.DTOs
    
         }
 
-        public UserDTOs()
+        public UserDTO()
         {
             UsersActivitiesLogs = new List<UserActivityLog>();
             Interests = new List<Interest>();

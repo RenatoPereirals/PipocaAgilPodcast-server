@@ -6,12 +6,8 @@ namespace PipocaAgilPodcast.Persistence.Models;
 
     public partial class PipocaAgilPodcastDbContext : DbContext
     {
-        public PipocaAgilPodcastDbContext()
-        {
-        }
 
-        public PipocaAgilPodcastDbContext(DbContextOptions<PipocaAgilPodcastDbContext> options)
-            : base(options)
+        public PipocaAgilPodcastDbContext(DbContextOptions<PipocaAgilPodcastDbContext> options) : base(options)
         {
         }
 
@@ -26,18 +22,18 @@ namespace PipocaAgilPodcast.Persistence.Models;
             modelBuilder.Entity<UserActivityLog>().HasKey(ua => new {ua.UserId, ua.ActivityLogId});
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.Development.json")
-                    .Build();
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     if (!optionsBuilder.IsConfigured)
+        //     {
+        //         IConfigurationRoot configuration = new ConfigurationBuilder()
+        //             .SetBasePath(Directory.GetCurrentDirectory())
+        //             .AddJsonFile("appsettings.Development.json")
+        //             .Build();
 
-                string? connectionString = configuration.GetConnectionString("pipoca-server");
-                optionsBuilder.UseNpgsql(connectionString);
-            }
-        }
+        //         string? connectionString = configuration.GetConnectionString("pipoca-server");
+        //         optionsBuilder.UseNpgsql(connectionString);
+        //     }
+        // }
     }
 
