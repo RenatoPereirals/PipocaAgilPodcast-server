@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace tests.UnitTests.Application.DTOs;
 
-    public class UserDTOsTests
+    public class UserDTOTests
     {
         [Fact]
-        public void UserDTOs_DefaultConstructor_SetsDefaultValues()
+        public void UserDTO_DefaultConstructor_SetsDefaultValues()
         {
             // Arrange & Act
-            var userDto = new UserDTOs();
+            var userDto = new UserDTO();
 
             // Assert
             Assert.Equal(0, userDto.Id);
@@ -22,7 +22,7 @@ namespace tests.UnitTests.Application.DTOs;
         }
 
          [Fact]
-        public void UserDTOs_ParameterizedConstructor_SetsPropertyValues()
+        public void UserDTO_ParameterizedConstructor_SetsPropertyValues()
         {
             // Arrange
             int id = 1;
@@ -32,7 +32,7 @@ namespace tests.UnitTests.Application.DTOs;
             DateTime dateOfBirth = new DateTime(1990, 1, 1);
 
             // Act
-            var userDto = new UserDTOs(id, fullName, userName, imageURL, dateOfBirth);
+            var userDto = new UserDTO(id, fullName, userName, imageURL, dateOfBirth);
 
             // Assert
             Assert.Equal(id, userDto.Id);
@@ -43,10 +43,10 @@ namespace tests.UnitTests.Application.DTOs;
         }
 
         [Fact]
-        public void UserDTOs_DefaultConstructor_InitializesCollections()
+        public void UserDTO_DefaultConstructor_InitializesCollections()
         {
             // Arrange & Act
-            var userDto = new UserDTOs();
+            var userDto = new UserDTO();
 
             // Assert
             Assert.NotNull(userDto.Interests);
@@ -54,10 +54,10 @@ namespace tests.UnitTests.Application.DTOs;
         }
 
         [Fact]
-        public void UserDTOs_ValidationAttributes()
+        public void UserDTO_ValidationAttributes()
         {
             // Arrange
-            var userDto = new UserDTOs
+            var userDto = new UserDTO
             {
                 Id = 1,
                 FullName = "John Doe",
@@ -77,10 +77,10 @@ namespace tests.UnitTests.Application.DTOs;
         }
 
         [Fact]
-        public void UserDTOs_ValidationAttributes_InvalidDateOfBirth()
+        public void UserDTO_ValidationAttributes_InvalidDateOfBirth()
         {
             // Arrange
-            var userDto = new UserDTOs
+            var userDto = new UserDTO
             {
                 Id = 1,
                 FullName = "John Doe",
