@@ -11,6 +11,10 @@ namespace PipocaAgilPodcast.Persistence.Models;
         {
         }
 
+        public PipocaAgilPodcastDbContext()
+        {
+        }
+
         public DbSet<User> Users => Set<User>();
         public DbSet<ActivityLog> ActivityHistory => Set<ActivityLog>();
         public DbSet<ActivityStatistics> Statisticss => Set<ActivityStatistics>();
@@ -21,19 +25,5 @@ namespace PipocaAgilPodcast.Persistence.Models;
         {
             modelBuilder.Entity<UserActivityLog>().HasKey(ua => new {ua.UserId, ua.ActivityLogId});
         }
-
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         IConfigurationRoot configuration = new ConfigurationBuilder()
-        //             .SetBasePath(Directory.GetCurrentDirectory())
-        //             .AddJsonFile("appsettings.Development.json")
-        //             .Build();
-
-        //         string? connectionString = configuration.GetConnectionString("pipoca-server");
-        //         optionsBuilder.UseNpgsql(connectionString);
-        //     }
-        // }
     }
 
