@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
+using PipocaAgilPodcast.Mapping.UserMapping;
 using PipocaAgilPodcast.Persistence.Models;
 using PipocaAgilPodcast.Services.Implementations;
 
@@ -18,6 +19,10 @@ namespace PipocaAgilPodcast.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(UserToUserDTOMapper));
+
+            services.AddScoped<IUserService, UserService>();
+
             IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.Development.json")
@@ -30,7 +35,7 @@ namespace PipocaAgilPodcast.Presentation
 
             services.AddControllers();
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();    
 
             services.AddSwaggerGen(c =>
             {
