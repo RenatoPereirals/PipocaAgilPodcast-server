@@ -132,6 +132,12 @@ namespace PipocaAgilPodcast.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("LastAccess")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("text");

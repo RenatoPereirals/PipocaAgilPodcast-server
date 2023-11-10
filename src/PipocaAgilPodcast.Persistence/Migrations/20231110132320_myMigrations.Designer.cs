@@ -12,8 +12,8 @@ using PipocaAgilPodcast.Persistence.Models;
 namespace PipocaAgilPodcast.Persistence.Migrations
 {
     [DbContext(typeof(PipocaAgilPodcastDbContext))]
-    [Migration("20231109012145_myMigratio")]
-    partial class myMigratio
+    [Migration("20231110132320_myMigrations")]
+    partial class myMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,6 +134,12 @@ namespace PipocaAgilPodcast.Persistence.Migrations
                     b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("LastAccess")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
