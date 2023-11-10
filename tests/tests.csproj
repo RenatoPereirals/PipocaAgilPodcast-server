@@ -46,6 +46,7 @@
     <ProjectReference Include="../src/PipocaAgilPodcast.Interfaces/PipocaAgilPodcast.Interfaces.csproj" />
     <ProjectReference Include="../src/PipocaAgilPodcast.Infrastructure/PipocaAgilPodcast.Infrastructure.csproj" />
     <ProjectReference Include="../src/PipocaAgilPodcast.Application/PipocaAgilPodcast.Application.csproj" />
+    <ProjectReference Include="../src/PipocaAgilPodcast.Presentation/PipocaAgilPodcast.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

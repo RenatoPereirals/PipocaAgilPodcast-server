@@ -3,7 +3,7 @@ using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
 using PipocaAgilPodcast.Services.Error;
 
-namespace PipocaAgilPodcast.Controllers
+namespace PipocaAgilPodcast.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
