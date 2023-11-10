@@ -1,32 +1,41 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
+using System.Runtime.CompilerServices;
+using AutoMapper;
+using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
+using PipocaAgilPodcast.Interfaces.ContractsServices;
 using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Services.Implementations
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
-         private readonly IRepositoryPesistence _userRepositoryPesistence;
+        private readonly IRepositoryPesistence _repositoryPersistence;
+        private readonly IUserService _userService;
+        public readonly IMapper _mapper;
 
-        public UserRepository(IRepositoryPesistence userRepositoryPesistence)
+        public UserRepository(IRepositoryPesistence userRepositoryPesistence,
+                              IUserService userService,
+                              IMapper mapper)
         {
-            _userRepositoryPesistence = userRepositoryPesistence;
+            _repositoryPersistence = userRepositoryPesistence;
+            _userService = userService;
+            _mapper = mapper;
         }
 
-        public async Task<ServiceResponse> CreateUser(User user)
+        public async Task<UserDTO> AddUser(UserDTO model)
         {
-            var response = new ServiceResponse();
-
             try
             {
-                _userRepositoryPesistence.Add(user);
-                await _userRepositoryPesistence.SaveChangesAsync();
+                var user = _mapper.Map<User>(model);
+                _repositoryPersistence.Add(user);
+                await _repositoryPersistence.SaveChangesAsync();
 
-                response.IsSuccess = true;
-                response.StatusCode = 201; // return Created
-                response.Message = "Usuário criado com sucesso.";
+                var userDto = _mapper.Map<UserDTO>(user);
+
+                return userDto;
             }
            catch (Exception ex)
             {
@@ -50,22 +59,25 @@ namespace PipocaAgilPodcast.Services.Implementations
                     throw new UserHandlingException("Erro inesperado ao criar o usuário.", ex); // returns an unexpected error 
                 }
             }
-
-            return response;
         }
 
-        public async Task<ServiceResponse> UpdateUser(User user)
+        public async Task<UserDTO> UpdateUser(int id, UserDTO model)
         {
-            var response = new ServiceResponse();
-
             try
             {
-                _userRepositoryPesistence.Update(user);
-                await _userRepositoryPesistence.SaveChangesAsync();
+                var existingUser = await _userService.GetUserByIdAsync(id);
 
-                response.IsSuccess = true;
-                response.StatusCode = 200; // return OK
-                response.Message = "Usuário atualizado com sucesso.";
+                if (existingUser == null) throw new UserHandlingException("Usuário não encontrado.");
+
+                _mapper.Map(model, existingUser); // Atualizar propriedades do usuário com base no DTO
+                
+                _repositoryPersistence.Update(existingUser); // Atuaiza o usuário
+                await _repositoryPersistence.SaveChangesAsync(); // Salva as mudanças
+
+                var userDto = _mapper.Map<UserDTO>(existingUser);
+
+                return userDto;
+
             }
             catch (Exception ex)
             {
@@ -83,21 +95,22 @@ namespace PipocaAgilPodcast.Services.Implementations
                 }
             }
 
-                return response;
         }
 
-        public async Task<ServiceResponse> DeleteUser(User user)
+        public async Task<bool> DeleteUser(int id, UserDTO model)
         {
-            var response = new ServiceResponse();
-
             try
             {
-                _userRepositoryPesistence.Delete(user);
-                await _userRepositoryPesistence.SaveChangesAsync();
+                var existingUser = await _userService.GetUserByIdAsync(id);
 
-                response.IsSuccess = true;
-                response.StatusCode = 204; // return No Content
-                response.Message = "Usuário deletado com sucesso.";
+                 if (existingUser == null) throw new UserHandlingException("Usuário não encontrado");
+
+                _mapper.Map(model, existingUser); // Deleta propriedades do usuário com base no DTO
+            
+                _repositoryPersistence.Delete(existingUser); // Deleta o usuário
+                await _repositoryPersistence.SaveChangesAsync(); // Salva as mudanças
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -110,36 +123,6 @@ namespace PipocaAgilPodcast.Services.Implementations
                     throw new UserHandlingException("Erro inesperado ao deletar o usuário.", ex); // returns an unexpected error 
                 }
             }
-
-            return response;
-        }
-
-        public async Task<ServiceResponse> DeleteRangeUser(User[] users)
-        {
-            var response = new ServiceResponse();
-
-            try
-            {
-                _userRepositoryPesistence.DeleteRange(users);
-                await _userRepositoryPesistence.SaveChangesAsync();
-
-                response.IsSuccess = true;
-                response.StatusCode = 204; // return No Content
-                response.Message = "Usuários deletados com sucesso.";
-            }
-            catch (Exception ex)
-            {
-                if (ex is DbException dbException)
-                {
-                    throw new UserDeletedFailedException("Erro ao deletar o usuários.", dbException, 500); // return Internal Error Server             
-                }
-                else
-                {
-                    throw new UserHandlingException("Erro inesperado ao deletar os usuários.", ex); // returns an unexpected error 
-                }
-            }
-
-            return response;
         }
     }
 }
