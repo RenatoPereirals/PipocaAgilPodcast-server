@@ -1,11 +1,12 @@
+using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Interfaces.ContractsServices;
 
     public interface IUserService
     {
-        Task<User[]> GetAllUsersAsync();
-        Task<User> GetUserByIdAsync(int id);
-        Task<User> GetUserByUserNameAsync(string userName);
-        Task<User[]> GetUsersByInterestAsync(string interestName);
+        Task<UserDTO[]> GetAllUsersAsync(CancellationToken cancellationToken = default);
+        Task<User> GetUserByIdAsync(int id, CancellationToken cancellationToken = default);
+        Task<UserDTO> GetUserByUserNameAsync(string userName, CancellationToken cancellationToken = default);
+        Task<UserDTO[]> GetUsersByInterestAsync(string interestName, CancellationToken cancellationToken = default);
     }

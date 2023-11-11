@@ -8,13 +8,16 @@ namespace PipocaAgilPodcast.Domain;
         {
             UsersActivitiesLogs = new List<UserActivityLog>();
             Interests = new List<Interest>();
-        }
+            RegistrationDate = DateTime.UtcNow;
+        } 
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string UserName  { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-        public virtual IEnumerable<Interest> Interests { get; set; }
+         public  DateTime RegistrationDate { get; set; }
+        public DateTime LastAccess { get; set; }
+        public virtual IEnumerable<Interest>? Interests { get; set; }
         public virtual ActivityStatistics? Statistics { get; set; }
-        public IEnumerable<UserActivityLog> UsersActivitiesLogs { get; set; }
+        public IEnumerable<UserActivityLog>? UsersActivitiesLogs { get; set; }
     }

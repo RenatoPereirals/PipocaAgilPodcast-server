@@ -36,7 +36,7 @@ namespace PipocaAgilPodcast.Application.DTOs
 
         [RegularExpression(@".*\.(gif|jpe?g|bmp|png|webp)$",
             ErrorMessage = "Não é uma imagem válida. A extensão da sua imagem deve ser: (webp, gif, jpg, jpeg, bmp ou png)")]
-        public string ImageURL { get; set; } = string.Empty;
+        public string? ImageURL { get; set; } = string.Empty;
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]

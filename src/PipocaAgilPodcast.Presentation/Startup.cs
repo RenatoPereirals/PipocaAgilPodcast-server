@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
 using PipocaAgilPodcast.Mapping.UserMapping;
-using PipocaAgilPodcast.Persistence.Models;
+using PipocaAgilPodcast.Persistence;
 using PipocaAgilPodcast.Services.Implementations;
+using PipocaAgilPodcast.Persistence.Models;
 
 namespace PipocaAgilPodcast.Presentation
 {
@@ -22,6 +24,10 @@ namespace PipocaAgilPodcast.Presentation
             services.AddAutoMapper(typeof(UserToUserDTOMapper));
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();
+
 
             IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

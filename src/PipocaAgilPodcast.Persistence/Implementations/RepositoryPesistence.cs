@@ -1,7 +1,7 @@
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Persistence.Models;
 
-namespace PipocaAgilPodcast.Persistence.Implementations
+namespace PipocaAgilPodcast.Persistence
 {
     public class RepositoryPesistence : IRepositoryPesistence
     {
