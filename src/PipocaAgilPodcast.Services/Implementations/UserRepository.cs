@@ -7,6 +7,7 @@ using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
+using PipocaAgilPodcast.Persistence.Implementations;
 using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Services.Implementations
@@ -62,23 +63,18 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
         }
 
-        public async Task<UserDTO> UpdateUser(int userId, int id, UserDTO model)
+        public async Task<UserDTO> UpdateUser(int id, UserDTO model)
         {
             try
             {
-                var existingUser = await _userService.GetUserByIdAsync(id);
-                if (existingUser == null) throw new UserHandlingException("Usuário não encontrado.");
+                var user = _mapper.Map<User>(model);
+                _repositoryPersistence.Update(user);
+                await _repositoryPersistence.SaveChangesAsync();
 
-                model.Id = existingUser.Id;
+                var userDto = _mapper.Map<UserDTO>(user);
 
-                _mapper.Map(model, existingUser); // Atualizar propriedades do usuário com base no DTO
-                
-                _repositoryPersistence.Update<User>(existingUser); // Atuaiza o usuário
-                if(await _repositoryPersistence.SaveChangesAsync())
-                {
-                    var userReturn = await _userService.GetUserByIdAsync(userId);
-                    return _mapper.Map<UserDTO>(userReturn);
-                } 
+                return userDto;
+
 
                 // var userDto = _mapper.Map<UserDTO>(existingUser);
 
@@ -103,7 +99,7 @@ namespace PipocaAgilPodcast.Services.Implementations
 
         }
 
-        public async Task<bool> DeleteUser(int id, UserDTO model)
+        public async Task<bool> DeleteUser(int id)
         {
             try
             {
@@ -111,8 +107,6 @@ namespace PipocaAgilPodcast.Services.Implementations
 
                  if (existingUser == null) throw new UserHandlingException("Usuário não encontrado");
 
-                _mapper.Map(model, existingUser); // Deleta propriedades do usuário com base no DTO
-            
                 _repositoryPersistence.Delete(existingUser); // Deleta o usuário
                 await _repositoryPersistence.SaveChangesAsync(); // Salva as mudanças
 

@@ -111,22 +111,31 @@ namespace PipocaAgilPodcast.Presentation.Controllers
         {
             try
             {
-                var existingUser = await _userRepository.UpdateUser(User.GetUserId(), id, model);
-                if (existingUser == null) return NotFound($"Usuário com o ID {id} não encontrado.");
-
-                // _mapper.Map(model, existingUser);
-
-                // if (!ModelState.IsValid) return BadRequest(ModelState);
-
-                // var updateResult = await _userRepository.UpdateUser(id, existingUser);
+                var existingUser = await _userRepository.UpdateUser(id, model);
+                if (existingUser == null) return NoContent();
 
                 return Ok(existingUser);
-
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
             }  
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id) {
+            try {
+                var existingUser = await _userService.GetUserByIdAsync(id);
+                if (existingUser == null) return NoContent();
+
+                await _userRepository.DeleteUser(id);
+                
+
+                return Ok(existingUser);
+            }
+            catch (Exception ex) {
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }
         }
     }
 }
