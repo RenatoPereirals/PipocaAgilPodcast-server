@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using AutoMapper;
 using PipocaAgilPodcast.Application.DTOs;
@@ -61,22 +62,27 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
         }
 
-        public async Task<UserDTO> UpdateUser(int id, UserDTO model)
+        public async Task<UserDTO> UpdateUser(int userId, int id, UserDTO model)
         {
             try
             {
                 var existingUser = await _userService.GetUserByIdAsync(id);
-
                 if (existingUser == null) throw new UserHandlingException("Usuário não encontrado.");
+
+                model.Id = existingUser.Id;
 
                 _mapper.Map(model, existingUser); // Atualizar propriedades do usuário com base no DTO
                 
-                _repositoryPersistence.Update(existingUser); // Atuaiza o usuário
-                await _repositoryPersistence.SaveChangesAsync(); // Salva as mudanças
+                _repositoryPersistence.Update<User>(existingUser); // Atuaiza o usuário
+                if(await _repositoryPersistence.SaveChangesAsync())
+                {
+                    var userReturn = await _userService.GetUserByIdAsync(userId);
+                    return _mapper.Map<UserDTO>(userReturn);
+                } 
 
-                var userDto = _mapper.Map<UserDTO>(existingUser);
+                // var userDto = _mapper.Map<UserDTO>(existingUser);
 
-                return userDto;
+                throw new UserHandlingException("Usuário não encontrado.");;
 
             }
             catch (Exception ex)

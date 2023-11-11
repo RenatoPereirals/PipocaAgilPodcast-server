@@ -30,7 +30,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             return _mapper.Map<UserDTO[]>(users);
         }
 
-        public async Task<UserDTO> GetUserByIdAsync(int userId, CancellationToken cancellationToken = default)
+        public async Task<User> GetUserByIdAsync(int userId, CancellationToken cancellationToken = default)
         {
             if (userId <= 0) throw new ArgumentException("O ID do usuário deve ser maior que zero.", nameof(userId));
         
@@ -39,7 +39,7 @@ namespace PipocaAgilPodcast.Services.Implementations
 
             if (user == null) throw new UserHandlingException("Id do usuário não encontrado.");        
 
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<User>(user);
         }
 
         public async Task<UserDTO> GetUserByUserNameAsync(string userName, CancellationToken cancellationToken = default)

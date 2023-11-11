@@ -17,7 +17,7 @@ namespace PipocaAgilPodcast.Domain;
         public DateTime DateOfBirth { get; set; }
          public  DateTime RegistrationDate { get; set; }
         public DateTime LastAccess { get; set; }
-        public virtual IEnumerable<Interest> Interests { get; set; }
+        public virtual IEnumerable<Interest>? Interests { get; set; }
         public virtual ActivityStatistics? Statistics { get; set; }
-        public IEnumerable<UserActivityLog> UsersActivitiesLogs { get; set; }
+        public IEnumerable<UserActivityLog>? UsersActivitiesLogs { get; set; }
     }

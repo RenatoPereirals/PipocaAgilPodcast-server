@@ -1,8 +1,11 @@
 using System.Data.Common;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PipocaAgilPodcast.Application.DTOs;
+using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
+using PipocaAgilPodcast.Presentation.Extensions;
 using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Presentation.Controllers
@@ -13,10 +16,16 @@ namespace PipocaAgilPodcast.Presentation.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+        private readonly IRepositoryPesistence _repositoryPesistence;
 
         public UserController(IUserService userService,
-                              IUserRepository userRepository)
+                              IUserRepository userRepository,
+                              IMapper mapper,
+                              IRepositoryPesistence repositoryPesistence)
         {
+            _mapper = mapper;
+            _repositoryPesistence = repositoryPesistence;
             _userService = userService;
             _userRepository = userRepository;
         }
@@ -31,7 +40,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Ocorreu um erro ao buscar os usuários: " + ex.Message);
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
@@ -49,7 +58,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Ocorreu um erro ao buscar o usuário: " + ex.Message);
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
@@ -67,7 +76,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Ocorreu um erro ao buscar o usuário por nome de usuário: " + ex.Message);
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
@@ -79,6 +88,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
                 if (!ModelState.IsValid) return BadRequest(ModelState);
     
                 var user = await _userRepository.AddUser(model);
+                if (user == null) return NoContent();
 
                 return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
             }
@@ -91,9 +101,32 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             catch (Exception ex)
             {
                 // Trate outras exceções
-                return StatusCode(500, new { Message = $"Erro ao processar a solicitação. Error {ex}" });
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
 
             }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, UserDTO model)
+        {
+            try
+            {
+                var existingUser = await _userRepository.UpdateUser(User.GetUserId(), id, model);
+                if (existingUser == null) return NotFound($"Usuário com o ID {id} não encontrado.");
+
+                // _mapper.Map(model, existingUser);
+
+                // if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                // var updateResult = await _userRepository.UpdateUser(id, existingUser);
+
+                return Ok(existingUser);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }  
         }
     }
 }
