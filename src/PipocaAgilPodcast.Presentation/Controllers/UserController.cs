@@ -111,7 +111,8 @@ namespace PipocaAgilPodcast.Presentation.Controllers
         {
             try
             {
-                var existingUser = await _userRepository.UpdateUser(id, model);
+                var existingUser = await _userService.GetUserByIdAsync(id);
+                await _userRepository.UpdateUser(id, model);
                 if (existingUser == null) return NoContent();
 
                 return Ok(existingUser);

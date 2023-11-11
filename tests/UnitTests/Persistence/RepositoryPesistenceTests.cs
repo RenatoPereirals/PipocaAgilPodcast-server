@@ -1,5 +1,5 @@
 using PipocaAgilPodcast.Persistence.Models;
-using PipocaAgilPodcast.Persistence.Implementations;
+using PipocaAgilPodcast.Persistence;
 using tests.FeatureTests;
 using Moq;
 using Xunit;

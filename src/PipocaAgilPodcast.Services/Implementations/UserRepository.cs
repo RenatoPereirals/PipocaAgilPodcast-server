@@ -1,13 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
 using AutoMapper;
 using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
-using PipocaAgilPodcast.Persistence.Implementations;
 using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Services.Implementations
