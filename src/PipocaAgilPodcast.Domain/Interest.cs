@@ -1,10 +1,10 @@
 namespace PipocaAgilPodcast.Domain;
     public class Interest
     {
-        public Interest()
-        {
-            User = new User();
-        }
+        // public Interest()
+        // {
+        //     User = new User();
+        // }
         public int Id { get; set; }
         public int UserId { get; set; }
         public virtual User User { get; set; }

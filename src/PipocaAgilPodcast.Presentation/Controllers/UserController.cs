@@ -2,10 +2,8 @@ using System.Data.Common;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PipocaAgilPodcast.Application.DTOs;
-using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
-using PipocaAgilPodcast.Presentation.Extensions;
 using PipocaAgilPodcast.Services.Error;
 
 namespace PipocaAgilPodcast.Presentation.Controllers
@@ -86,7 +84,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-    
+
                 var user = await _userRepository.AddUser(model);
                 if (user == null) return NoContent();
 
@@ -94,15 +92,12 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             }
             catch (DbException ex)
             {
-                // Trate a violação de chave única
                 return Conflict(new { Message = $"Usuário já existe. Error {ex}" });
 
             }
             catch (Exception ex)
             {
-                // Trate outras exceções
                 return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-
             }
         }
 
@@ -111,22 +106,42 @@ namespace PipocaAgilPodcast.Presentation.Controllers
         {
             try
             {
-                var existingUser = await _userRepository.UpdateUser(User.GetUserId(), id, model);
-                if (existingUser == null) return NotFound($"Usuário com o ID {id} não encontrado.");
+               // var existingUser = await _userService.GetUserByIdAsync(id);
+                var existingUser = await _userRepository.UpdateUser(id, model);
+                if (existingUser == null) return NoContent();
 
-                // _mapper.Map(model, existingUser);
+                //existingUser.FullName = model.FullName;
+                //existingUser.UserName = model.UserName;
 
-                // if (!ModelState.IsValid) return BadRequest(ModelState);
+                _mapper.Map(_mapper, existingUser);
 
-                // var updateResult = await _userRepository.UpdateUser(id, existingUser);
+                await _repositoryPesistence.SaveChangesAsync();
 
                 return Ok(existingUser);
-
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-            }  
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var existingUser = await _userService.GetUserByIdAsync(id);
+                if (existingUser == null) return NoContent();
+
+                await _userRepository.DeleteUser(id);
+
+
+                return Ok(existingUser);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }
         }
     }
 }

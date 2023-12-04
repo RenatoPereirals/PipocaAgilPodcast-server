@@ -6,15 +6,15 @@ namespace PipocaAgilPodcast.Application.DTOs
 {
     public class UserDTO
     {
-        public UserDTO(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
-        {
-            this.Id = id;
-            this.FullName = fullName;
-            this.UserName = userName;
-            this.ImageURL = imageURL;
-            this.DateOfBirth = dateOfBirth;
+        //public UserDTO(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
+        //{
+        //    this.Id = id;
+        //    this.FullName = fullName;
+        //    this.UserName = userName;
+        //    this.ImageURL = imageURL;
+        //    this.DateOfBirth = dateOfBirth;
    
-        }
+        //}
 
         public UserDTO()
         {
@@ -25,13 +25,11 @@ namespace PipocaAgilPodcast.Application.DTOs
         public int Id { get; set; }
         [Display(Name = "Nome Completo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(50, MinimumLength = 4,
-            ErrorMessage ="O campo {0} deve conter entre 4 e 50 caractere.")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage ="O campo {0} deve conter entre 4 e 50 caractere.")]
         public string FullName { get; set; } = string.Empty;
 
         [Display(Name = "Nome de Usuário")]
-        [StringLength(50, MinimumLength = 4,
-            ErrorMessage ="O campo {0} deve conter entre 4 e 50 caractere.")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage ="O campo {0} deve conter entre 4 e 50 caractere.")]
         public string UserName { get; set; } = string.Empty;
 
         [RegularExpression(@".*\.(gif|jpe?g|bmp|png|webp)$",

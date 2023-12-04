@@ -34,14 +34,11 @@ namespace PipocaAgilPodcast.Presentation
                 .AddJsonFile("appsettings.Development.json")
                 .Build();
 
-            services.AddDbContext<PipocaAgilPodcastDbContext>(context =>
-            
-                context.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                services.AddDbContext<PipocaAgilPodcastDbContext>(context =>
+                    context.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
             services.AddControllers();
-
-            services.AddScoped<IUserService, UserService>();    
 
             services.AddSwaggerGen(c =>
             {

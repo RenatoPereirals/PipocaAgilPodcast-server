@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Persistence.Models;
