@@ -102,7 +102,7 @@ namespace PipocaAgilPodcast.Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, UserDTO model)
+        public async Task<IActionResult> Put(int id, UserUpdateDTO model)
         {
             try
             {

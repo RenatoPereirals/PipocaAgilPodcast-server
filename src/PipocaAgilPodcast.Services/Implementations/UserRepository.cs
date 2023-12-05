@@ -60,7 +60,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
         }
 
-        public async Task<UserDTO> UpdateUser(int id, UserDTO model)
+        public async Task<UserDTO> UpdateUser(int id, UserUpdateDTO model)
         {
             try
             {
@@ -93,7 +93,6 @@ namespace PipocaAgilPodcast.Services.Implementations
                     throw new UserHandlingException("Erro inesperado ao atualizar o usuário.", ex); // returns an unexpected error 
                 }
             }
-
         }
 
         public async Task<bool> DeleteUser(int id)
