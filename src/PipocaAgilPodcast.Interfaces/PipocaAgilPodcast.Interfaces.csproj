@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
       <ProjectReference Include="..\PipocaAgilPodcast.Domain\PipocaAgilPodcast.Domain.csproj" />
-      <ProjectReference Include="..\PipocaAgilPodcast.Authentication\PipocaAgilPodcast.Authentication.csproj" />
       <ProjectReference Include="..\PipocaAgilPodcast.Application\PipocaAgilPodcast.Application.csproj" />
   </ItemGroup>
 

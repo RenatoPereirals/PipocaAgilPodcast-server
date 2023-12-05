@@ -24,10 +24,13 @@ namespace PipocaAgilPodcast.Application.DTOs
         [MinimumAge(18, ErrorMessage = "Você deve ter pelo menos 18 anos.")]
         public DateTime DateOfBirth { get; set; }
 
+        public string Password { get; set; }
+
         public UserDTO()
         {
             FullName = string.Empty;
             UserName = string.Empty;
+            Password = string.Empty;
         }
     }
 }
