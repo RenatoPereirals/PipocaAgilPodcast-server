@@ -8,7 +8,13 @@ namespace PipocaAgilPodcast.Authentication.Identity
 {
     public class UserRole : IdentityUserRole<int>
     {
-        public User User { get; set; }
-        public Role Role { get; set; }
+        public UserAuth UserAuths { get; set; }
+        public Role Roles { get; set; }
+
+        public UserRole()
+        {
+            UserAuths = new UserAuth();
+            Roles = new Role();
+        }
     }
 }

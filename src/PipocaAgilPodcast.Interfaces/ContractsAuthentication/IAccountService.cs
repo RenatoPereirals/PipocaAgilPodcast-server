@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using PipocaAgilPodcast.Application.DTOs;
 
-namespace PipocaAgilPodcast.Interfaces.ContractsApplication
+namespace PipocaAgilPodcast.Interfaces.ContractsAuthentication
 {
     public interface IAccountService
     {
