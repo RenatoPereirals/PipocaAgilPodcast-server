@@ -12,7 +12,7 @@ using PipocaAgilPodcast.Persistence.Models;
 namespace PipocaAgilPodcast.Persistence.Migrations
 {
     [DbContext(typeof(PipocaAgilPodcastDbContext))]
-    [Migration("20231205014529_InitialMigration")]
+    [Migration("20231205115739_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
