@@ -22,6 +22,7 @@ namespace PipocaAgilPodcast.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(UserToUserDTOMapper));
+            services.AddAutoMapper(typeof(UserToUserUpdateDTOMapper));
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();

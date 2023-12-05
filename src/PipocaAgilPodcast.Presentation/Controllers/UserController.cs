@@ -101,26 +101,6 @@ namespace PipocaAgilPodcast.Presentation.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, UserUpdateDTO model)
-        {
-            try
-            {
-                var existingUser = await _userRepository.UpdateUser(id, model);
-                if (existingUser == null) return NoContent();
-
-                _mapper.Map(_mapper, existingUser);
-
-                await _repositoryPesistence.SaveChangesAsync();
-
-                return Ok(existingUser);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-            }
-        }
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

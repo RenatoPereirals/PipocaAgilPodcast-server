@@ -4,11 +4,11 @@ using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Mapping.UserMapping
 {
-    public class UserToUserDTOMapper : Profile
+    public class UserToUserUpdateDTOMapper : Profile
     {
-        public UserToUserDTOMapper()
+        public UserToUserUpdateDTOMapper()
         {
-            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserUpdateDTO>().ReverseMap();
         }
     }
 }

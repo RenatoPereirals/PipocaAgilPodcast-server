@@ -11,8 +11,8 @@ namespace PipocaAgilPodcast.Application.DTOs
         public string UserName  { get; set; } 
         public string? ImageURL { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public  DateTime RegistrationDate { get; private set; }
-        public DateTime LastAccess { get; private set; }
+        public  DateTime RegistrationDate { get; set; }
+        public DateTime LastAccess { get; set; }
 
         public UserUpdateDTO()
         {
