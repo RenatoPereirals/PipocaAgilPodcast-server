@@ -13,10 +13,11 @@ using Microsoft.IdentityModel.Tokens;
 using AutoMapper;
 using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Application.DTOs;
+using PipocaAgilPodcast.Interfaces.ContractsAuthentication;
 
 namespace PipocaAgilPodcast.Authentication.Implementations
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         
         private readonly IConfiguration _config;
