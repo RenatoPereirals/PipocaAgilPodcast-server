@@ -2,27 +2,34 @@ namespace PipocaAgilPodcast.Domain;
 
     public class User
     {
-    public User(string fullName, string userName, string imageURL, DateTime dateOfBirth, DateTime registrationDate, DateTime lastAccess, IEnumerable<Interest>? interests, ActivityStatistics? statistics, IEnumerable<UserActivityLog>? usersActivitiesLogs)
-    {
-        FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
-        UserName = userName ?? throw new ArgumentNullException(nameof(userName));
-        ImageURL = imageURL ?? throw new ArgumentNullException(nameof(imageURL));
-        DateOfBirth = dateOfBirth;
-        RegistrationDate = registrationDate;
-        LastAccess = lastAccess;
-        Interests = interests;
-        Statistics = statistics;
-        UsersActivitiesLogs = usersActivitiesLogs;
-    }
-
         public int Id { get; set; }
         public string? FullName { get; set; }
         public string UserName  { get; set; } 
         public string ImageURL { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public  DateTime RegistrationDate { get; set; }
-        public DateTime LastAccess { get; set; }
-        public virtual IEnumerable<Interest>? Interests { get; set; }
-        public virtual ActivityStatistics? Statistics { get; set; }
-        public IEnumerable<UserActivityLog>? UsersActivitiesLogs { get; set; }
+        public  DateTime RegistrationDate { get; private set; }
+        public DateTime LastAccess { get; private set; }
+
+    // Construtor sem parâmetros (inicializa a entidade user com valores padrão)
+        public User()
+        {
+            FullName = string.Empty;
+            UserName = string.Empty;
+            ImageURL = string.Empty;
+            RegistrationDate = DateTime.UtcNow;
+        }
+
+    // Construtor com parâmetros (criar a entidade user com valores específicos)
+        public User(string fullName,
+                    string userName,
+                    string imageURL,
+                    DateTime dateOfBirth)
+        {
+            FullName = fullName;
+            UserName = userName;
+            ImageURL = imageURL;
+            DateOfBirth = dateOfBirth;
+            LastAccess = DateTime.UtcNow; // Define o último acesso como a data/hora atual
+        }
     }
+    

@@ -54,19 +54,6 @@ namespace PipocaAgilPodcast.Services.Implementations
             if (user == null) throw new UserHandlingException("Nome de usuário não encontrado.");          
 
             return _mapper.Map<UserDTO>(user);
-        }
-        public async Task<UserDTO[]> GetUsersByInterestAsync(string interestName, CancellationToken cancellationToken = default)
-        {
-            if (string.IsNullOrWhiteSpace(interestName)) throw new ArgumentException("O nome do interesse não pode estar vazio ou nulo.", nameof(interestName));
-          
-            var users = await _context.Users
-                .Include(u => u.Interests)
-                .Where(u => u.Interests != null && u.Interests.Any(i => i.Topic == interestName))
-                .ToListAsync(cancellationToken);
-            
-            if (users == null) throw new UserHandlingException("Nome de interesse não encontrados.");
-
-            return _mapper.Map<UserDTO[]>(users);           
-        }  
+        } 
     }
 }

@@ -6,22 +6,6 @@ namespace PipocaAgilPodcast.Application.DTOs
 {
     public class UserDTO
     {
-        //public UserDTO(int id, string fullName, string userName, string imageURL, DateTime dateOfBirth) 
-        //{
-        //    this.Id = id;
-        //    this.FullName = fullName;
-        //    this.UserName = userName;
-        //    this.ImageURL = imageURL;
-        //    this.DateOfBirth = dateOfBirth;
-   
-        //}
-
-        public UserDTO()
-        {
-            UsersActivitiesLogs = new List<UserActivityLog>();
-            Interests = new List<Interest>();
-        }
-
         public int Id { get; set; }
         [Display(Name = "Nome Completo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
@@ -40,9 +24,5 @@ namespace PipocaAgilPodcast.Application.DTOs
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [MinimumAge(18, ErrorMessage = "Você deve ter pelo menos 18 anos.")]
         public DateTime DateOfBirth { get; set; }
-        public virtual IEnumerable<Interest>? Interests { get; set; }
-        public virtual ActivityStatistics? Statistics { get; set; }
-        public IEnumerable<UserActivityLog>? UsersActivitiesLogs { get; set; }
-
     }
 }

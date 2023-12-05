@@ -26,17 +26,6 @@ namespace PipocaAgilPodcast.Presentation
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();
-
-
-            IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.Development.json")
-                .Build();
-
-                services.AddDbContext<PipocaAgilPodcastDbContext>(context =>
-                    context.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
-            );
 
             services.AddControllers();
 
