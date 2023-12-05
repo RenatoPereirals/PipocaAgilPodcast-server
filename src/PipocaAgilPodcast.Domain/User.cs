@@ -3,14 +3,14 @@ namespace PipocaAgilPodcast.Domain;
     public class User
     {
         public int Id { get; set; }
-        public string? FullName { get; set; }
+        public string FullName { get; set; }
         public string UserName  { get; set; } 
         public string ImageURL { get; set; }
         public DateTime DateOfBirth { get; set; }
         public  DateTime RegistrationDate { get; private set; }
         public DateTime LastAccess { get; private set; }
 
-    // Construtor sem parâmetros (inicializa a entidade user com valores padrão)
+    // Construtor sem parï¿½metros (inicializa a entidade user com valores padrï¿½o)
         public User()
         {
             FullName = string.Empty;
@@ -19,7 +19,7 @@ namespace PipocaAgilPodcast.Domain;
             RegistrationDate = DateTime.UtcNow;
         }
 
-    // Construtor com parâmetros (criar a entidade user com valores específicos)
+    // Construtor com parï¿½metros (criar a entidade user com valores especï¿½ficos)
         public User(string fullName,
                     string userName,
                     string imageURL,
@@ -29,7 +29,7 @@ namespace PipocaAgilPodcast.Domain;
             UserName = userName;
             ImageURL = imageURL;
             DateOfBirth = dateOfBirth;
-            LastAccess = DateTime.UtcNow; // Define o último acesso como a data/hora atual
+            LastAccess = DateTime.UtcNow; // Define o ï¿½ltimo acesso como a data/hora atual
         }
     }
     
