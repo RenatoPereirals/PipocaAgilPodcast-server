@@ -45,7 +45,7 @@ namespace PipocaAgilPodcast.Authentication.Implementations
                 return await _signInManager.CheckPasswordSignInAsync(user, password, false);
                      
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Erro ao tentar verificar a senha do usuário. Erro: {ex.Message}");
             }
@@ -125,7 +125,7 @@ namespace PipocaAgilPodcast.Authentication.Implementations
 
                 throw new Exception("Usuário não encontrado");;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Erro ao tentar atualizar o usuário. Erro: {ex.Message}");
             }
@@ -137,7 +137,7 @@ namespace PipocaAgilPodcast.Authentication.Implementations
             {
                 return await _userManager.Users.AnyAsync(user => user.UserName == userName.ToLower());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Erro ao tentar verificar se o usuário existe. Erro: {ex.Message}");
             }
