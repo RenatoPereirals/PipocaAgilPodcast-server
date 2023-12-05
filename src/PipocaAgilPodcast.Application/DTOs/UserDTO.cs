@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Infrastructure.ValidationAttributes;
 
 namespace PipocaAgilPodcast.Application.DTOs

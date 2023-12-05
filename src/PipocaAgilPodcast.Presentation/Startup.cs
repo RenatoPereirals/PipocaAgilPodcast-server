@@ -21,8 +21,9 @@ namespace PipocaAgilPodcast.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(typeof(UserToUserDTOMapper));
-            services.AddAutoMapper(typeof(UserToUserUpdateDTOMapper));
+            // services.AddAutoMapper(typeof(UserToUserUpdateDTOMapper));
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRepositoryPesistence, RepositoryPesistence>();

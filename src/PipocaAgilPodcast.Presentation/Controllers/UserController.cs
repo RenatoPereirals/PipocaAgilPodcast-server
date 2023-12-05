@@ -2,6 +2,7 @@ using System.Data.Common;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PipocaAgilPodcast.Application.DTOs;
+using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
 using PipocaAgilPodcast.Services.Error;
@@ -110,7 +111,6 @@ namespace PipocaAgilPodcast.Presentation.Controllers
                 if (existingUser == null) return NoContent();
 
                 await _userRepository.DeleteUser(id);
-
 
                 return Ok(existingUser);
             }

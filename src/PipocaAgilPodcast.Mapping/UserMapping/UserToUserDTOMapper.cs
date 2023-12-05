@@ -9,6 +9,7 @@ namespace PipocaAgilPodcast.Mapping.UserMapping
         public UserToUserDTOMapper()
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserUpdateDTO>().ReverseMap();
         }
     }
 }
