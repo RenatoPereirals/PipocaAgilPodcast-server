@@ -60,7 +60,7 @@ namespace PipocaAgilPodcast.Services.Implementations
             }
         }
 
-        public async Task<UserDTO> UpdateUser(int id, UserUpdateDTO model)
+        public async Task<UserUpdateDTO> UpdateUser(int id, UserUpdateDTO model)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace PipocaAgilPodcast.Services.Implementations
                 _repositoryPersistence.Update(user);
                 await _repositoryPersistence.SaveChangesAsync();
 
-                var userDto = _mapper.Map<UserDTO>(user);
+                var userDto = _mapper.Map<UserUpdateDTO>(user);
 
                 return userDto;
 
