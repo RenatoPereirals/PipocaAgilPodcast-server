@@ -1,6 +1,5 @@
 using AutoMapper;
 using PipocaAgilPodcast.Application.DTOs;
-using PipocaAgilPodcast.Authentication.Identity;
 using PipocaAgilPodcast.Domain;
 
 namespace PipocaAgilPodcast.Mapping.UserMapping
@@ -12,9 +11,9 @@ namespace PipocaAgilPodcast.Mapping.UserMapping
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<User, UserUpdateDTO>().ReverseMap();
 
-            CreateMap<UserAuth, UserLoginDto>().ReverseMap();
-            CreateMap<UserDTO, UserAuth>().ReverseMap();
-            CreateMap<UserUpdateDTO, UserAuth>().ReverseMap();  
+            CreateMap<UserDTO, UserLoginDto>().ReverseMap();
+            CreateMap<UserDTO, UserDTO>().ReverseMap();
+            CreateMap<UserUpdateDTO, UserDTO>().ReverseMap();  
         }
     }
 }

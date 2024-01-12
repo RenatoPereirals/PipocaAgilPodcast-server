@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PipocaAgilPodcast.Application.DTOs;
 using PipocaAgilPodcast.Authentication.Identity;
-using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsAuthentication;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
@@ -72,14 +71,21 @@ namespace PipocaAgilPodcast.Authentication.Implementations
             }
         }
 
+        public async Task<UserUpdateDTO> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+
+            var resultado = _mapper.Map<UserUpdateDTO>(users);
+
+            return resultado;
+        }
+
         public async Task<UserUpdateDTO> GetUserByUserNameAsync(string userName)
         {
             try
             {
-                var user = await _userService.GetUserByUserNameAsync(userName);
-
-                if (user == null)
-                    throw new Exception("Usuário não encontrado");;
+                var user = await _userService.GetUserByUserNameAsync(userName) 
+                    ?? throw new Exception("Usuário não encontrado");
 
                 var userUpdateDto = _mapper.Map<UserUpdateDTO>(user);
                 return userUpdateDto;
@@ -94,13 +100,12 @@ namespace PipocaAgilPodcast.Authentication.Implementations
         {
             try
             {
-                var user = await _userService.GetUserByUserNameAsync(userUpdateDto.UserName);
+                var user = await _userService.GetUserByUserNameAsync(userUpdateDto.UserName) 
+                    ?? throw new Exception("Usuário não encontrado");
 
-                if (user == null) throw new Exception("Usuário não encontrado");; 
-                
                 userUpdateDto.Id = user.Id;
 
-                UserAuth updatedUser = new UserAuth 
+                UserAuth updatedUser = new()
                 {
                     UserName = userUpdateDto.UserName,
                     Email = userUpdateDto.Email,
@@ -114,7 +119,7 @@ namespace PipocaAgilPodcast.Authentication.Implementations
                     await _userManager.ResetPasswordAsync(updatedUser, token, userUpdateDto.Password);
                 }
                 
-                _repository.Update<UserAuth>(updatedUser);
+                _repository.Update(updatedUser);
 
                 if (await _repository.SaveChangesAsync())
                 {
