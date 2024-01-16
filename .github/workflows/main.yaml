@@ -78,11 +78,11 @@ jobs:
   #               Write-Host "A cobertura de teste está abaixo do limite. Os testes falharam."
   #               echo "::set-output name=unitTestsStatus::failing"
   #           } else {
-  #               Write-Host "A cobertura de teste atende ao limite. Os testes estão passando."
+  #               Write-Host "A cobertura de teste atende ao limite. Os testes passaram."
   #               echo "::set-output name=unitTestsStatus::passing"
   #           }
   #         } else {
-  #           Write-Host "Nenhum relatório de cobertura de código encontrado. Assumindo que os testes estão passando."
+  #           Write-Host "Nenhum relatório de cobertura de código encontrado."
   #           echo "::set-output name=unitTestsStatus::passing"
   #         }
   
