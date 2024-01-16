@@ -2,7 +2,6 @@ using System.Data.Common;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PipocaAgilPodcast.Application.DTOs;
-using PipocaAgilPodcast.Domain;
 using PipocaAgilPodcast.Interfaces.ContractsPersistence;
 using PipocaAgilPodcast.Interfaces.ContractsServices;
 using PipocaAgilPodcast.Services.Error;
