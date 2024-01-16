@@ -1,6 +1,14 @@
 # Pipoca Ágil Podcast - Servidor
 
-Bem-vindo ao repositório do servidor do Pipoca Ágil Podcast! Este é o coração do nosso projeto multimídia, onde você pode ouvir podcasts, ler artigos e participar de eventos relacionados à metodologia ágil. A aplicação também oferece a capacidade de se cadastrar como usuário comum ou como usuário administrador. Se você é um usuário administrador, terá acesso a informações detalhadas sobre os eventos, podcasts e artigos mais populares, bem como informações sobre o conteúdo mais curtido, comentado e compartilhado.
+Bem-vindo ao backend do Pipoca Ágil, um projeto de gerenciamento e apresentação de podcasts desenvolvido com C# e ASP.NET Este projeto faz parte de uma iniciativa voluntária de uma equipe Scrum, composta por um Product Owner, Scrum Master, Quality Assurance, UX/UI Designer e eu, um Desenvolvedor Fullstack.
+
+Este projeto foi criado com o objetivo de tratar as requisições do frontend, proporcionando uma experiência de usuário completa e coesa.
+
+Este projeto incorpora uma variedade de tecnologias e frameworks modernos, incluindo Entity Framework Core para persistência de dados, JWT para autenticação e autorização seguras, e Identity Framework para gerenciamento de identidade. Além disso, utilizamos PostgreSQL como nosso sistema de gerenciamento de banco de dados.
+
+Embora este projeto não tenha fins comerciais e não esteja atualmente hospedado devido a considerações de custo, ele serve como uma demonstração valiosa de nossas habilidades em criar soluções de backend complexas e seguras. Ele destaca nossa capacidade de trabalhar com uma variedade de tecnologias e adaptar nossas soluções para atender às necessidades específicas do projeto.
+
+Por favor, note que este é o backend do projeto e pode sofrer alterações à medida que o projeto avança.
 
 ## Tecnologias Principais
 
