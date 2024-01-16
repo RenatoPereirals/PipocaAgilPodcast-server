@@ -10,7 +10,10 @@ public class PipocaAgilPodcastDbContext : DbContext
     public PipocaAgilPodcastDbContext(DbContextOptions<PipocaAgilPodcastDbContext> options) : base(options) { }
     public DbSet<User> Users => Set<User>();
 
-    private string connectionString = "Host=localhost;Port=5432;Database=pipocaAgilPodcastDb;Username=postgres;Password=RPS532110nat";
+    private readonly string connectionString = @"Host=localhost;Port=5432;
+                                                 Database=pipocaAgilPodcastDb;
+                                                 Username=postgres;
+                                                 Password=RPS532110nat";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
